@@ -6,6 +6,5 @@ var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',
     subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
 }).addTo(map);
 
-
-// Export the map and loadMarkersFromCSV function
+// Export the map
 export { map };

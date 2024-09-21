@@ -1,8 +1,6 @@
 import { map } from './map.js';
 
-
-
-// Extend Conmtrol class to create a custom control for displaying coordinates
+// DEV ONLY: Extend Control class to create a custom control for displaying coordinates
 let Position = L.Control.extend({
     _container: null,
     options: {
