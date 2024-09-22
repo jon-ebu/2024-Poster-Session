@@ -3,7 +3,7 @@ MAP
 [] Toggle between illustrated map and satellite view layer
 [] Rotate map?
 [X] Show Markers
-[] Fix Zoom in
+[X] Fix Zoom in
 
 TABLE
 [] Mobile-friendly table
@@ -12,7 +12,7 @@ TABLE
 [] "Show on map" functionality for individual posters
 
 CSV
-[] Add coordinates
+[X] Add coordinates
 
 HOSTING
-[] Upload to GitHub Pages
+[X] Upload to GitHub Pages
