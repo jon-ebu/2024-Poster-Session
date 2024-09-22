@@ -21,6 +21,38 @@
             /* Prevent vertical scroll */
         }
 
+        .table>tbody>tr>td,
+        .table>tbody>tr>th,
+        .table>tfoot>tr>td,
+        .table>tfoot>tr>th,
+        .table>thead>tr>td,
+        .table>thead>tr>th {
+            padding: 5px;
+            white-space: normal;
+            /* Allow text to wrap */
+            overflow-wrap: normal;
+            /* Prevent breaking long words */
+            word-break: normal;
+            /* Don't break words at arbitrary points */
+        }
+
+        table.footable-details>tbody>tr>td:nth-child(2) {
+            word-break: keep-all;
+        }
+
+        .poster-title {
+            white-space: normal !important;
+            /* Allow text to wrap */
+            overflow-wrap: normal !important;
+            /* Prevent breaking long words */
+            word-break: normal !important;
+            /* Don't break words at arbitrary points */
+            max-width: 150px;
+            /* Optional: Set a max width */
+        }
+
+  
+
         .container {
             display: flex;
             flex-direction: column;
@@ -53,7 +85,7 @@
             /* Break long words */
             overflow-wrap: break-word !important;
             /* Similar to word-wrap */
-    
+
         }
     </style>
 </head>
@@ -78,7 +110,7 @@
     <!-- FooTable JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/3.1.6/footable.min.js"
         crossorigin="anonymous"></script>
-    <script src="scripts/convert-tsv-to-html.js"></script>
+    <script type="module" src="scripts\convert-tsv-to-html.js"></script>
 </body>
 
 </html>

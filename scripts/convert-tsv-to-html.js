@@ -1,18 +1,5 @@
-function initializeFooTable() {
-    $('#tsvTable').footable({
-        sorting: {
-            enabled: true
-        },
-        filtering: {
-            enabled: true,
-            focus: true
-        },
-        toggle: true,
-        paging: {
-			container: "#paging-ui-container"
-		}
-    });
-}
+
+import { initializeFooTable } from './initializeFooTable.js';
 
 function displayTable(tableData) {
     const table = document.getElementById('tsvTable');
@@ -52,7 +39,6 @@ function displayTable(tableData) {
     // Initialize FooTable after table is generated
     initializeFooTable();
 }
-
 // Wait for the DOM to load and load the TSV file
 document.addEventListener('DOMContentLoaded', function () {
     // Fetch the TSV file using AJAX
