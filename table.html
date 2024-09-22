@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024 Poster Session</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <!-- FooTable CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/3.1.6/footable.bootstrap.min.css"
+        crossorigin="anonymous">
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            overflow-y: hidden;
+            /* Prevent vertical scroll */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .table-responsive {
+            flex: 1;
+            /* Allow table to take available space */
+            overflow: auto;
+            /* Enable scrolling for table only */
+            margin-bottom: 10px;
+            /* Add space below the table */
+        }
+
+        .pagination-wrapper {
+            background: white;
+            z-index: 1000 !important;
+            padding: 10px;
+            width: 100%;
+            text-align: center !important;
+            position: relative !important;
+            /* Ensure it's part of the flex layout */
+        }
+
+        .poster-title {
+            white-space: normal !important;
+            /* Allow text to wrap */
+            word-wrap: break-word !important;
+            /* Break long words */
+            overflow-wrap: break-word !important;
+            /* Similar to word-wrap */
+    
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="table-responsive">
+            <table id="tsvTable" class="footable table table-striped" data-paging-container="#paging-ui-container"
+                data-paging="true" data-filtering="true" data-sorting="true" data-state="true" data-filter-focus="true">
+            </table>
+        </div>
+        <div class="pagination-wrapper">
+            <div id="paging-ui-container"></div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+    <!-- FooTable JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/3.1.6/footable.min.js"
+        crossorigin="anonymous"></script>
+    <script src="scripts/convert-tsv-to-html.js"></script>
+</body>
+
+</html>
