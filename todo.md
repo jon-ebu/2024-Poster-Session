@@ -2,8 +2,8 @@ MAP
 [] Geo-referenced visual?
 [] Toggle between illustrated map and satellite view layer
 [] Rotate map?
-[] Show Markers
-[] 
+[X] Show Markers
+[] Fix Zoom in
 
 TABLE
 [] Mobile-friendly table

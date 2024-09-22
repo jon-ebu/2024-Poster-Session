@@ -1,83 +1,83 @@
 Latitude,Longitude,Poster Category,Easel Board,Poster Title,Students,Faculty
-34.10612,-117.71183,Biology,B-1,Modeling a Microbial Fuel Cell with KBase,Taylor Baugh,"Sarah Owens, Argonne National Laboratory. Stephanie M Greenwald, Argonne National Laboratory."
-,,Biology,B-2,The Impact of CG2658 on Drosophila melanogaster,"Aum Pechkamnerd, Kris A. Chang, Tracy Han, Alykhan A. Rajan",Professor Jae H. Hur
-,,Biology,B-3,Using a dCas9 Bdf3 Protein Complex to Determine the Effect of Bdf3 on Differentiation in Trypanosoma brucei,"Ashley Tan, Ethan Goroza, Brecken Enright, Alessandra Ela",Danae Schulz
-,,Biology,B-4,Unique Octocoral Communities of Oman,Josie Nelson,Prof. McFadden
-,,Biology,B-5,Investigating the Effects of Chromatin Interacting Proteins on Life Cycle Differentiation in T. brucei,"Brecken Enright, Alessandra Ela, Ethan Goroza, Fumi Tanizawa","Dr. Danae Schulz, Harvey Mudd College"
-,,Biology,B-6,How Flight Motors Compare Across Flies,Marissa Douglas,"Michael Dickinson, California Institute of Technology"
-,,Biology,B-7,Characterizing the Effect of the Extravascular Environment on Trypanosoma brucei Antigenic Diversity,Fumi Tanizawa,"Prof. Monica Mugnier, Johns Hopkins University"
-,,"Biology, Chemistry",BC-1,Understanding Probiotic Growth: Lacticaseibacillus Rhamnosus,Irene Jung,"Prof. Spencer Brucks, Harvey Mudd College"
-,,"Biology, Computer Science",BCS-1,Probabilistic Time Series Modeling of Tumor Growth in Patient-Derived Xenografts,Rohan Subramanian,"Dr Wesley Tansey, Memorial Sloan Kettering Cancer Center"
-,,"Biology, Engineering",BE-1,Dynamic CD4 T cell Motility as a Biomarker of Senescence,"Gabrielle Reynolds, LaDaisha Thompson, Chanhong Min","Dr.Jude Phillip, Johns Hopkins"
-,,"Biology, Engineering",BE-2,Extracellular Vesicle Production as a Function of Culture Conditions,"Caiya Coggshall, Josiah Garan, Jonathan Tabb",Professor Steven Santana
-,,Chemistry,C-1,Unravelling the Mechanism of Peptide Hydrogel Assembly,Zoe He,Prof. Bilin Zhuang
-,,Chemistry,C-2,One Dimensional Coordination Polymers,Kayla Long,Prof Healy
-,,Chemistry,C-3,Detangling the MOF Mystery,"Tanner Gasteazoro, Sam Wheeler",Colm Healy
-,,Chemistry,C-4,Greener Syntheses and Shape-Dependent Degradation of Polynorbornenes,"Britney Baez, Grey Karis-Sconyers",Prof. Spencer Brucks
-,,Chemistry,C-5,Development of Potential Energy Surfaces for Ionic Liquids using Artificial Neural Networks,Edward Donson,Prof. Sandra Brown
-,,Chemistry,C-6,"PbS:I,Cl Thin-Film Quantum Dot-Based Photovoltaics","Leif Shomali, Jimmy Boyle, Claire Stuvland",Hal Van Ryswyk
-,,Chemistry,C-7,Effect of Dipole Asymmetry on the Interfacial Behavior of Polar Fluids,Ananya Venkatachalam,"Prof. Zhen-Gang Wang, Caltech"
-,,Chemistry,C-8,"Mild, Green Acylation of Carbon Nucleophiles Using TCFH-NMI","Johnson Ho, Grant Miller",Prof. David Vosburg
-,,Chemistry,C-9,Expanding the scope of cationic-anionic sequential polymerization for block copolymers,Nora O'Connor,"Jessica Lamb, University of Minnesota"
-,,Chemistry,C-10,Synthesis and Characterization of Norbornene-Based Bottlebrush Polymers and Gels,Nicole Fang,Prof. Spencer Brucks
-,,Chemistry,C-11,How Do Big Sugars Get Filtered Out From Our Blood,Selina Yao,Prof. Bilin Zhuang
-,,Chemistry,C-12,Pure water a mixture?,Diya Sanghi,Prof Bilin Zhuang
-,,Chemistry,C-13,Predicting Water Clusters Around Succinimides,Yuki Watanabe,Prof. Bilin Zhuang
-,,Chemistry,C-14,Synthesis of Isotopologues of Succinimide for Rotational Spectroscopy,Amir Gonzalez Camahco,Alicia Hernandez-Castillo
-,,Chemistry,C-15,Improvements made to REMPI and Microwave Spectroscopy Experimental Setup,"Cameron Warmerdam, Channing Christian",Hernandez Castillo
-,,Chemistry,C-16,Exploring Biology Through Chemical Synthesis,Oriole Song,David Vosburg
-,,Chemistry,C-17,Fitting Experimental Spectra using XIAM and PGOPHER,Huanhuan Huang,Prof. HC
-,,"Chemistry, Engineering, Physics",CEP-1,Calculating Volume Shrinkage during the Liquid-Solid Phase Change of Complex Metal Alloys using Computational Methods,"Audrey Thiessen, Carleton Imbens",Lori Bassman
-,,"Chemistry, Hixon Center",CHC-1,Processing Eddy Covariance Data,Matthew Simpson,Prof. Sarah Kavassalis
-,,Computer Science,CS-1,Code metrics,"Jenny Ngo, Florence Rui Lin, Yuan Garcia",Professor Zachary Dodds
-,,Computer Science,CS-2,WasteWise: Greener Habits Starts Here,"Terence Chen, William Koh, My Nguyen","Zach Dodds, Mike Izbicki"
-,,Computer Science,CS-3,An Analysis of Network Overhead in Distributed TinyML,"Alan Gutierrez, Ket Hollingsworths",Prof. Arthi
-,,Computer Science,CS-4,Evaluating the stability of monocular depth models,Jessica Huang,Prof. Calden Wloka
-,,Computer Science,CS-5,How Does Prior Knowledge Affect Attention?,"Lyra Cromwell, Jadyn Iinuma",Calden Wloka
-,,Computer Science,CS-6,Visualizations for Deep Spatiotemporal Networks: Effective Metrics for Class Activation Mapping (CAM),"Diane Park, Alex Silver",Prof. Calden Wloka
-,,Computer Science,CS-7,HELP: Hierarchical Embeddings-based Log Parsing,Andy Xu,"Arno Gau, Iudex AI"
-,,"Computer Science, Hixon Center",CSHC-1,We’ve Been Saying the Same Thing for 20 Years: The Disabled Experience with Climate Change and Climate Action,"Lily Anfang, Kaitlynn Gray, Ethan Sandoval",Prof Lynn Kirabo
-,,"Computer Science, Hixon Center",CSHC-2,Constructing Understandable Climate Models using Graph Neural Networks,Mia Mirabelli,Prof. Sarah Kavassalis
-,,"Computer Science, Hixon Center",CSHC-3,Upscaling Carbon Flux: Variations in Performance,Anna Figge,Prof. Sarah Kavassalis
-,,"Computer Science, Mathematics",CSM-1,Analyzing Wrongful Incarceration Using Large Language Models,"Shreya Balaji, Dakota Lin, Anshuman Singh, Kyle Torres","Prof. Deanna Needell, University of California, Los Angeles & Dr. Minxin Zhang, University of California, Los Angeles"
-,,"Computer Science, Mathematics",CSM-2,Phase Transitions in Biased Random k-SAT,"Mithra Karamchedu, Gülce Kardeş (mentor, Ph.D. student at CU Boulder)","Prof. Cristopher Moore, Santa Fe Institute"
-,,"Computer Science, Neuroscience",CSN-1,fMRI Encoder Alignment: Reconstructing Images from Brain Activity,Kavi Dey,"Dr. Juan (Helen) Zhou, National University of Singapore"
-,,Engineering,E-1,System Design of Multicore Fiber Low Coherence Interferometer for Minimally Invasive Endoscopy,"Zoe Worrall, Ben Hartley",Joshua Brake
-,,Engineering,E-2,Testing Testing Abrasiveness of 3D Printed Ceramics vs. Steel,"Kanoa parker, Miranda Brandt",Gordon Krauss
-,,Engineering,E-3,Rheological Characterization Informs Micromixing Models for the Creation of Tunable Hydrogels,"Samuel Brewer, Gabriel Klinger, Clayson Briggs",Prof. Steven Santana
-,,Engineering,E-4,Passive House Design: Reducing Emissions in Halton’s Growing Housing Market,"Leran Hu, Hessa Almesafri (Khalifa University), Varun Sen (University of Waterloo)",Chris Rennick (University of Waterloo)
-,,Engineering,E-5,Biometrically Measured Behavior and Performance in Simulation and Real-World Training for Drone Pilots in Inspection Tasks,Will Sedo,David Nembhard
-,,Engineering,E-6,"Impact of Charge, Binding Region, and Co-assembly on Intrinsic Fluorescence of Peptide Amphiphile Nanofibers","Liselotte Ryan, Lindsey Sands, Kate Lam, Julia Gong, Griffin Stevens",Prof. Whitney Fowler
-,,Engineering,E-7,Microalgae Cultivation at Mid-Halton Wastewater Facility,"Cristina Tzunun Palomo, Meghan Almeida, Juan Manuel Eguia Ochoa",Professor Gordon Krauss
-,,Engineering,E-8,Development of in vivo Uniaxial Extensometer Device and Preliminary Investigation on Mechanical Stretching vs. Transdermal Properties of Human Skin,"Georgia Tai, Anthony Tran, Abraham Rock, Emily Brent, Ande Brako, Bengisu Bulur",Nancy Lape
-,,Engineering,E-9,Comparison of Experimental and Modeling Results on Relative Humidity vs. Transepidermal Water Loss in Human Skin,"Georgia Tai, Emily Brent, Adne Brako, Abraham Rock, Anthony Tran, Bengisu Bulur",Nancy Lape
-,,Engineering,E-10,Enhancing Error Detection in Drone-Assisted Bridge Inspections with Machine Learning,"Zhian Zhou, Ashley Song, Bryce Tu Chi, Sae Furukawa",Prof. David Nembhard
-,,Engineering,E-11,Open Source In-Vivo Imaging Systems (IVIS),"Ruby Peterman, Hailey Knolton",Professor Joshua Brake
-,,Engineering,E-12,Water reuse in the power sector: Experimental evaluations of reverse osmosis,"Celeste Magdaleno, Fanuel Alemayehu",Sophia Bahena
-,,Engineering,E-13,"Novel Lead-Free, Free Machining Brass","Isaiah Jeter, Julien Liu",Lori Bassman
-,,Engineering,E-14,Examining Optical Properties of Plant Stems for Rhizosphere Monitoring,"Erin Wang, Audrey Gruian",Josh Brake
-,,Engineering,E-15,Analyzing the effectiveness of bio-based oils in enhancing dimensional stability in wood fiber composites,Sofia Flores,"Avishek Chanda, Vikram Yadama, Washington State University"
-,,Engineering,E-16,Exploration of the fundamentals of flexoelectricity for use in a novel energy harvesting device,"Isaac Perez, Sofi Zaozerska, Luis Lorenzana",Ethan Ritz
-,,"Engineering, Mathematics",EM-1,Improving Energy Harvesting Using a Coupled Vibro-Impact System,"Nathan Hasegawa, Arnav Garg (New York University)","Prof. Rachel Kuske, Georgia Institute of Technology; Dr. Christina Athanasouli, Williams College; Dr. Rahul Kumar, Georgia Institute of Technology"
-,,Mathematics,M-1,"P-Nestohedra and Toric Compactifications of P_{d,n}}","Marwan Bit, Jenna Luo","Prof Javier Gonzalez-Anaya, Prof Dagan Karp"
-,,Mathematics,M-2,Exploring Modeling Methods Through Experimental Mathematics,"Zane Collins, Luke Fischer, Kyle Smeenge","Dr. Jane Friedman, University of San Diego"
-,,Mathematics,M-3,Good Least Squares Solvers Aren’t Always Good ALS Subroutines,"Yolanda Ba, Cole Plepel",Jamie Haddock
-,,Mathematics,M-4,Exploring the Role of the Sketching Matrix in Sketch-and-Project for Inconsistent Systems,Max Collins,Dr. Jamie Haddock
-,,Mathematics,M-5,Preference restricted parking functions,"Jayden Thadani, Alan Kappler",Michael Orrison
-,,Oceanography,O-1,The Effect of El Niño on Air-Sea Oxygen Fluxes in the Eastern Tropical Pacific Ocean,"Ivy Jaguzny, Ivy Jaguzny","Jannes Koelling, Postdoc at UW CICOES and NOAA Pacific Marine Environmental Lab"
-,,Physics,P-1,Pedestal Width-Height Scaling and Dependence on Plasma Shaping Parameters in Spherical Tokamaks MAST-U and NSTX,Collin Fitzpatrick,"Jack Berkery, Princeton Plasma Physics Lab"
-,,Physics,P-2,Medium-Volume GaN Metasurface Manufacturing Using Nano-Imprint Lithography,"Emily Kendrick, Emil Marinov, Aloke Jana","Patrice Genevet, Colorado School of Mines"
-,,Physics,P-3,Utilizing Generative Deep Learning for Variational Calculations of Nuclear Few-Body Systems,Miski Nopo,"Prof. Jeremy Holt, Texas A&M University"
-,,Physics,P-4,Search for compact object binaries in LAMOST Medium Resolution Survey using lithium,Leia Shen,"Josh Simon, Carnegie Observatories"
-,,Physics,P-5,In Search of Rare Earth-Free Magnets: Boron's Impact on the Magnetic Hysteresis of Mn-Al-Ga Alloys,Nikolas Hall,"Professor Peter Müllner, Boise State University"
-,,Physics,P-6,Efficient Adaptive Entanglement Witnessing,"Paco Navarro, Stuart Kerr, Lev Gruber",Theresa Lynn
-,,Physics,P-7,Constraints on the Bulk Photovoltaic Effect in Symmetry-Broken Graphene Using a New Optical Cryogenic Apparatus,"William Hodges, Matthew Chalk",Nicholas Breznay
-,,Physics,P-8,Improving stability predictions for multiplanetary systems,"Elio Thadhani, Connor Neely",Dan Tamayo
-,,Physics,P-9,Lattice Matching Thin Films to Experimentally Viable Substrates,Elena Williams,"Prof. Joseph Falson, Caltech"
-,,Physics,P-10,Characterization of Atomic Force Microscopy Cantilever Reference Parameters for GetReal Implementation,Ian Gray McGuire,"Research and Development Scientist, Aleks Labuda, Asylum Research"
-,,Physics,P-11,New approach in quantifying three body resonances,"Mickey Teekamongkol, Elizabeth Jones","Prof. Daniel Tamayo, Harvey Mudd College"
-,,Physics,P-12,High-Fidelity Quantum State Transfer Through a Potential Energy Barrier,"Caroline Sorrells, Alex Bobowski (UC Davis)","Prof. Richard Scalettar, University of California, Davis;"
-,,Physics,P-13,Mysterious Ground State Preference in Labyrinthine Colloid,"Henrik Barck,Aaron Galper, Conor Floyd",Sharon Gerbode
-,,Physics,P-14,Measuring the High-Rate Large Deformation Recoil of Elastic Materials,"Amelia Acker, Tay Han, Amy Liu, Sayema Lubis, Charlie Schofield",Mark Ilton
-,,Physics,P-15,Dynamics of Planetary Conjunctions at Mean Motion Resonance,"Lizzy Jones, Mickey Teekamongkol",Prof. Dan Tamayo
-,,Sustainability and Social Entrepreneurship Fellowship,SSEF-1,Sustainable Phosphorus Recovery and Reuse,"Lila Blank, Aisha Alhammadi (not an HMC student)",Gordon Krauss
+34.1061182,-117.71183,Biology,B-1,Modeling a Microbial Fuel Cell with KBase,Taylor Baugh,"Sarah Owens, Argonne National Laboratory. Stephanie M Greenwald, Argonne National Laboratory."
+34.1061317,-117.71183,Biology,B-2,The Impact of CG2658 on Drosophila melanogaster,"Aum Pechkamnerd, Kris A. Chang, Tracy Han, Alykhan A. Rajan",Professor Jae H. Hur
+34.1061452,-117.71183,Biology,B-3,Using a dCas9 Bdf3 Protein Complex to Determine the Effect of Bdf3 on Differentiation in Trypanosoma brucei,"Ashley Tan, Ethan Goroza, Brecken Enright, Alessandra Ela",Danae Schulz
+34.1061587,-117.71183,Biology,B-4,Unique Octocoral Communities of Oman,Josie Nelson,Prof. McFadden
+34.1061722,-117.71183,Biology,B-5,Investigating the Effects of Chromatin Interacting Proteins on Life Cycle Differentiation in T. brucei,"Brecken Enright, Alessandra Ela, Ethan Goroza, Fumi Tanizawa","Dr. Danae Schulz, Harvey Mudd College"
+34.1061859,-117.71183,Biology,B-6,How Flight Motors Compare Across Flies,Marissa Douglas,"Michael Dickinson, California Institute of Technology"
+34.1061859,-117.71185,Biology,B-7,Characterizing the Effect of the Extravascular Environment on Trypanosoma brucei Antigenic Diversity,Fumi Tanizawa,"Prof. Monica Mugnier, Johns Hopkins University"
+34.1061859,-117.711863,"Biology, Chemistry",BC-1,Understanding Probiotic Growth: Lacticaseibacillus Rhamnosus,Irene Jung,"Prof. Spencer Brucks, Harvey Mudd College"
+34.1061859,-117.711876,"Biology, Computer Science",BCS-1,Probabilistic Time Series Modeling of Tumor Growth in Patient-Derived Xenografts,Rohan Subramanian,"Dr Wesley Tansey, Memorial Sloan Kettering Cancer Center"
+34.1061859,-117.711889,"Biology, Engineering",BE-1,Dynamic CD4 T cell Motility as a Biomarker of Senescence,"Gabrielle Reynolds, LaDaisha Thompson, Chanhong Min","Dr.Jude Phillip, Johns Hopkins"
+34.1061859,-117.711902,"Biology, Engineering",BE-2,Extracellular Vesicle Production as a Function of Culture Conditions,"Caiya Coggshall, Josiah Garan, Jonathan Tabb",Professor Steven Santana
+34.10608,-117.71183,Chemistry,C-1,Unravelling the Mechanism of Peptide Hydrogel Assembly,Zoe He,Prof. Bilin Zhuang
+34.10607,-117.71183,Chemistry,C-2,One Dimensional Coordination Polymers,Kayla Long,Prof Healy
+34.10606,-117.71183,Chemistry,C-3,Detangling the MOF Mystery,"Tanner Gasteazoro, Sam Wheeler",Colm Healy
+34.10605,-117.71183,Chemistry,C-4,Greener Syntheses and Shape-Dependent Degradation of Polynorbornenes,"Britney Baez, Grey Karis-Sconyers",Prof. Spencer Brucks
+34.10604,-117.71183,Chemistry,C-5,Development of Potential Energy Surfaces for Ionic Liquids using Artificial Neural Networks,Edward Donson,Prof. Sandra Brown
+34.10603,-117.71183,Chemistry,C-6,"PbS:I,Cl Thin-Film Quantum Dot-Based Photovoltaics","Leif Shomali, Jimmy Boyle, Claire Stuvland",Hal Van Ryswyk
+34.10602,-117.71185,Chemistry,C-7,Effect of Dipole Asymmetry on the Interfacial Behavior of Polar Fluids,Ananya Venkatachalam,"Prof. Zhen-Gang Wang, Caltech"
+34.10602,-117.7118644,Chemistry,C-8,"Mild, Green Acylation of Carbon Nucleophiles Using TCFH-NMI","Johnson Ho, Grant Miller",Prof. David Vosburg
+34.10602,-117.7118789,Chemistry,C-9,Expanding the scope of cationic-anionic sequential polymerization for block copolymers,Nora O'Connor,"Jessica Lamb, University of Minnesota"
+34.10602,-117.7118933,Chemistry,C-10,Synthesis and Characterization of Norbornene-Based Bottlebrush Polymers and Gels,Nicole Fang,Prof. Spencer Brucks
+34.10602,-117.7119078,Chemistry,C-11,How Do Big Sugars Get Filtered Out From Our Blood,Selina Yao,Prof. Bilin Zhuang
+34.10602,-117.7119222,Chemistry,C-12,Pure water a mixture?,Diya Sanghi,Prof Bilin Zhuang
+34.10602,-117.7119367,Chemistry,C-13,Predicting Water Clusters Around Succinimides,Yuki Watanabe,Prof. Bilin Zhuang
+34.10602,-117.7119511,Chemistry,C-14,Synthesis of Isotopologues of Succinimide for Rotational Spectroscopy,Amir Gonzalez Camahco,Alicia Hernandez-Castillo
+34.10602,-117.7119656,Chemistry,C-15,Improvements made to REMPI and Microwave Spectroscopy Experimental Setup,"Cameron Warmerdam, Channing Christian",Hernandez Castillo
+34.10602,-117.71198,Chemistry,C-16,Exploring Biology Through Chemical Synthesis,Oriole Song,David Vosburg
+34.10602,-117.712029,Chemistry,C-17,Fitting Experimental Spectra using XIAM and PGOPHER,Huanhuan Huang,Prof. HC
+34.10602,-117.7120545,"Chemistry, Engineering, Physics",CEP-1,Calculating Volume Shrinkage during the Liquid-Solid Phase Change of Complex Metal Alloys using Computational Methods,"Audrey Thiessen, Carleton Imbens",Lori Bassman
+34.10602,-117.71208,"Chemistry, Hixon Center",CHC-1,Processing Eddy Covariance Data,Matthew Simpson,Prof. Sarah Kavassalis
+34.1061859,-117.711915,Computer Science,CS-1,Code metrics,"Jenny Ngo, Florence Rui Lin, Yuan Garcia",Professor Zachary Dodds
+34.1061859,-117.711928,Computer Science,CS-2,WasteWise: Greener Habits Starts Here,"Terence Chen, William Koh, My Nguyen","Zach Dodds, Mike Izbicki"
+34.1061859,-117.711941,Computer Science,CS-3,An Analysis of Network Overhead in Distributed TinyML,"Alan Gutierrez, Ket Hollingsworths",Prof. Arthi
+34.1061859,-117.711954,Computer Science,CS-4,Evaluating the stability of monocular depth models,Jessica Huang,Prof. Calden Wloka
+34.1061859,-117.711967,Computer Science,CS-5,How Does Prior Knowledge Affect Attention?,"Lyra Cromwell, Jadyn Iinuma",Calden Wloka
+34.1061859,-117.71198,Computer Science,CS-6,Visualizations for Deep Spatiotemporal Networks: Effective Metrics for Class Activation Mapping (CAM),"Diane Park, Alex Silver",Prof. Calden Wloka
+34.1061859,-117.7120273,Computer Science,CS-7,HELP: Hierarchical Embeddings-based Log Parsing,Andy Xu,"Arno Gau, Iudex AI"
+34.1061859,-117.7120444,"Computer Science, Hixon Center",CSHC-1,We’ve Been Saying the Same Thing for 20 Years: The Disabled Experience with Climate Change and Climate Action,"Lily Anfang, Kaitlynn Gray, Ethan Sandoval",Prof Lynn Kirabo
+34.1061859,-117.7120615,"Computer Science, Hixon Center",CSHC-2,Constructing Understandable Climate Models using Graph Neural Networks,Mia Mirabelli,Prof. Sarah Kavassalis
+34.1061859,-117.7120786,"Computer Science, Hixon Center",CSHC-3,Upscaling Carbon Flux: Variations in Performance,Anna Figge,Prof. Sarah Kavassalis
+34.106007,-117.7117806,"Computer Science, Mathematics",CSM-1,Analyzing Wrongful Incarceration Using Large Language Models,"Shreya Balaji, Dakota Lin, Anshuman Singh, Kyle Torres","Prof. Deanna Needell, University of California, Los Angeles & Dr. Minxin Zhang, University of California, Los Angeles"
+34.106025,-117.7117806,"Computer Science, Mathematics",CSM-2,Phase Transitions in Biased Random k-SAT,"Mithra Karamchedu, Gülce Kardeş (mentor, Ph.D. student at CU Boulder)","Prof. Cristopher Moore, Santa Fe Institute"
+34.1062027,-117.7117806,"Computer Science, Neuroscience",CSN-1,fMRI Encoder Alignment: Reconstructing Images from Brain Activity,Kavi Dey,"Dr. Juan (Helen) Zhou, National University of Singapore"
+34.106325,-117.711914,Engineering,E-1,System Design of Multicore Fiber Low Coherence Interferometer for Minimally Invasive Endoscopy,"Zoe Worrall, Ben Hartley",Joshua Brake
+34.106325,-117.7119266,Engineering,E-2,Testing Testing Abrasiveness of 3D Printed Ceramics vs. Steel,"Kanoa parker, Miranda Brandt",Gordon Krauss
+34.106325,-117.7119392,Engineering,E-3,Rheological Characterization Informs Micromixing Models for the Creation of Tunable Hydrogels,"Samuel Brewer, Gabriel Klinger, Clayson Briggs",Prof. Steven Santana
+34.106325,-117.7119518,Engineering,E-4,Passive House Design: Reducing Emissions in Halton’s Growing Housing Market,"Leran Hu, Hessa Almesafri (Khalifa University), Varun Sen (University of Waterloo)",Chris Rennick (University of Waterloo)
+34.106325,-117.7119644,Engineering,E-5,Biometrically Measured Behavior and Performance in Simulation and Real-World Training for Drone Pilots in Inspection Tasks,Will Sedo,David Nembhard
+34.106325,-117.7119784,Engineering,E-6,"Impact of Charge, Binding Region, and Co-assembly on Intrinsic Fluorescence of Peptide Amphiphile Nanofibers","Liselotte Ryan, Lindsey Sands, Kate Lam, Julia Gong, Griffin Stevens",Prof. Whitney Fowler
+34.106325,-117.7120227,Engineering,E-7,Microalgae Cultivation at Mid-Halton Wastewater Facility,"Cristina Tzunun Palomo, Meghan Almeida, Juan Manuel Eguia Ochoa",Professor Gordon Krauss
+34.106325,-117.7120337,Engineering,E-8,Development of in vivo Uniaxial Extensometer Device and Preliminary Investigation on Mechanical Stretching vs. Transdermal Properties of Human Skin,"Georgia Tai, Anthony Tran, Abraham Rock, Emily Brent, Ande Brako, Bengisu Bulur",Nancy Lape
+34.106325,-117.7120447,Engineering,E-9,Comparison of Experimental and Modeling Results on Relative Humidity vs. Transepidermal Water Loss in Human Skin,"Georgia Tai, Emily Brent, Adne Brako, Abraham Rock, Anthony Tran, Bengisu Bulur",Nancy Lape
+34.106325,-117.7120557,Engineering,E-10,Enhancing Error Detection in Drone-Assisted Bridge Inspections with Machine Learning,"Zhian Zhou, Ashley Song, Bryce Tu Chi, Sae Furukawa",Prof. David Nembhard
+34.106325,-117.7120667,Engineering,E-11,Open Source In-Vivo Imaging Systems (IVIS),"Ruby Peterman, Hailey Knolton",Professor Joshua Brake
+34.106325,-117.7120777,Engineering,E-12,Water reuse in the power sector: Experimental evaluations of reverse osmosis,"Celeste Magdaleno, Fanuel Alemayehu",Sophia Bahena
+34.1063834,-117.712087,Engineering,E-13,"Novel Lead-Free, Free Machining Brass","Isaiah Jeter, Julien Liu",Lori Bassman
+34.10639637,-117.712087,Engineering,E-14,Examining Optical Properties of Plant Stems for Rhizosphere Monitoring,"Erin Wang, Audrey Gruian",Josh Brake
+34.10640934,-117.712087,Engineering,E-15,Analyzing the effectiveness of bio-based oils in enhancing dimensional stability in wood fiber composites,Sofia Flores,"Avishek Chanda, Vikram Yadama, Washington State University"
+34.1064223,-117.712087,Engineering,E-16,Exploration of the fundamentals of flexoelectricity for use in a novel energy harvesting device,"Isaac Perez, Sofi Zaozerska, Luis Lorenzana",Ethan Ritz
+34.1061757,-117.7117806,"Engineering, Mathematics",EM-1,Improving Energy Harvesting Using a Coupled Vibro-Impact System,"Nathan Hasegawa, Arnav Garg (New York University)","Prof. Rachel Kuske, Georgia Institute of Technology; Dr. Christina Athanasouli, Williams College; Dr. Rahul Kumar, Georgia Institute of Technology"
+34.1058774,-117.7119297,Mathematics,M-1,"P-Nestohedra and Toric Compactifications of P_{d,n}}","Marwan Bit, Jenna Luo","Prof Javier Gonzalez-Anaya, Prof Dagan Karp"
+34.1058774,-117.7119423,Mathematics,M-2,Exploring Modeling Methods Through Experimental Mathematics,"Zane Collins, Luke Fischer, Kyle Smeenge","Dr. Jane Friedman, University of San Diego"
+34.1058774,-117.711955,Mathematics,M-3,Good Least Squares Solvers Aren’t Always Good ALS Subroutines,"Yolanda Ba, Cole Plepel",Jamie Haddock
+34.1058774,-117.7119677,Mathematics,M-4,Exploring the Role of the Sketching Matrix in Sketch-and-Project for Inconsistent Systems,Max Collins,Dr. Jamie Haddock
+34.1058774,-117.71198,Mathematics,M-5,Preference restricted parking functions,"Jayden Thadani, Alan Kappler",Michael Orrison
+34.1058664,-117.7119206,Oceanography,O-1,The Effect of El Niño on Air-Sea Oxygen Fluxes in the Eastern Tropical Pacific Ocean,"Ivy Jaguzny, Ivy Jaguzny","Jannes Koelling, Postdoc at UW CICOES and NOAA Pacific Marine Environmental Lab"
+34.1058774,-117.7120293,Physics,P-1,Pedestal Width-Height Scaling and Dependence on Plasma Shaping Parameters in Spherical Tokamaks MAST-U and NSTX,Collin Fitzpatrick,"Jack Berkery, Princeton Plasma Physics Lab"
+34.1058774,-117.7120406,Physics,P-2,Medium-Volume GaN Metasurface Manufacturing Using Nano-Imprint Lithography,"Emily Kendrick, Emil Marinov, Aloke Jana","Patrice Genevet, Colorado School of Mines"
+34.1058774,-117.712052,Physics,P-3,Utilizing Generative Deep Learning for Variational Calculations of Nuclear Few-Body Systems,Miski Nopo,"Prof. Jeremy Holt, Texas A&M University"
+34.1058774,-117.7120634,Physics,P-4,Search for compact object binaries in LAMOST Medium Resolution Survey using lithium,Leia Shen,"Josh Simon, Carnegie Observatories"
+34.1058774,-117.7120748,Physics,P-5,In Search of Rare Earth-Free Magnets: Boron's Impact on the Magnetic Hysteresis of Mn-Al-Ga Alloys,Nikolas Hall,"Professor Peter Müllner, Boise State University"
+34.1058774,-117.712085,Physics,P-6,Efficient Adaptive Entanglement Witnessing,"Paco Navarro, Stuart Kerr, Lev Gruber",Theresa Lynn
+34.1058664,-117.7120953,Physics,P-7,Constraints on the Bulk Photovoltaic Effect in Symmetry-Broken Graphene Using a New Optical Cryogenic Apparatus,"William Hodges, Matthew Chalk",Nicholas Breznay
+34.105851,-117.7120953,Physics,P-8,Improving stability predictions for multiplanetary systems,"Elio Thadhani, Connor Neely",Dan Tamayo
+34.1058356,-117.7120953,Physics,P-9,Lattice Matching Thin Films to Experimentally Viable Substrates,Elena Williams,"Prof. Joseph Falson, Caltech"
+34.1058202,-117.7120953,Physics,P-10,Characterization of Atomic Force Microscopy Cantilever Reference Parameters for GetReal Implementation,Ian Gray McGuire,"Research and Development Scientist, Aleks Labuda, Asylum Research"
+34.1058048,-117.7120953,Physics,P-11,New approach in quantifying three body resonances,"Mickey Teekamongkol, Elizabeth Jones","Prof. Daniel Tamayo, Harvey Mudd College"
+34.1057894,-117.7120953,Physics,P-12,High-Fidelity Quantum State Transfer Through a Potential Energy Barrier,"Caroline Sorrells, Alex Bobowski (UC Davis)","Prof. Richard Scalettar, University of California, Davis;"
+34.105774,-117.7120953,Physics,P-13,Mysterious Ground State Preference in Labyrinthine Colloid,"Henrik Barck,Aaron Galper, Conor Floyd",Sharon Gerbode
+34.1057586,-117.7120953,Physics,P-14,Measuring the High-Rate Large Deformation Recoil of Elastic Materials,"Amelia Acker, Tay Han, Amy Liu, Sayema Lubis, Charlie Schofield",Mark Ilton
+34.1058356,-117.7120537,Physics,P-15,Dynamics of Planetary Conjunctions at Mean Motion Resonance,"Lizzy Jones, Mickey Teekamongkol",Prof. Dan Tamayo
+34.1061893,-117.7117806,Sustainability and Social Entrepreneurship Fellowship,SSEF-1,Sustainable Phosphorus Recovery and Reuse,"Lila Blank, Aisha Alhammadi (not an HMC student)",Gordon Krauss

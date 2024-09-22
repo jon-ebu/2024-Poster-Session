@@ -26,16 +26,16 @@ map.addControl(position);
 
 // // DEV ONLY: Add mousemove event listener to update coordinates
 map.on('mousemove', function (e) {
-    var lat = e.latlng.lat.toFixed(5);
-    var lng = e.latlng.lng.toFixed(5);
+    var lat = e.latlng.lat.toFixed(7);
+    var lng = e.latlng.lng.toFixed(7);
     position.updateHTML(lat, lng);
 });
 
 
 // DEV ONLY: Add contextmenu event listener to copy coordinates on right-click
 map.on('contextmenu', function (e) {
-    var lat = e.latlng.lat.toFixed(5);
-    var lng = e.latlng.lng.toFixed(5);
+    var lat = e.latlng.lat.toFixed(7);
+    var lng = e.latlng.lng.toFixed(7);
     var latlng = `${lat}, ${lng}`;
     copyToClipboard(latlng);
     alert(`Copied to clipboard: ${latlng}`);
