@@ -3,7 +3,7 @@ import { map } from './map.js';
 var markers = [];
 
 /**
- * Function to get the color corresponding to the easel easelBoardId value
+ * Get the color corresponding to the easel easelBoardId value
  * @param {*} value The value to extract the easelBoardId from, e.g. 'B-01' or 'BC-02'
  * @returns  The color corresponding to the easelBoardId value
  */
@@ -105,8 +105,7 @@ function getShapeByEaselBoardId(value) {
             shape = '<path d="M 12 2 L 22 22 L 2 22 Z"  />'; // Same Triangle
             break;
         case 'CSN':
-            shape = '<circle cx="12" cy="12" r="5"  />'; // Smaller Circle
-            break;
+            shape = '<circle cx="12" cy="12" r="10"  />'; // Circle;             break;
         case 'E':
             shape = '<circle cx="12" cy="12" r="10"  />'; // Circle; 
             break;
@@ -133,27 +132,29 @@ function getShapeByEaselBoardId(value) {
 }
 
 
-// Function to get custom SVG icon based on easel board ID
+// Get custom SVG icon based on easel board ID
 function getCustomIcon(easelBoardId, size) {
     const color = getColorByEaselBoardId(easelBoardId);
     const shape = getShapeByEaselBoardId(easelBoardId);
     const svgIcon = L.divIcon({
-        className: 'custom-div-icon',
-        html: `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}" xmlns="http://www.w3.org/2000/svg">
-                ${shape}
-               </svg>`,
-        iconSize: [size, size],
-        iconAnchor: [size / 2, size / 2]
+        className: 'custom-div-icon', // Ensure the custom-div-icon class is applied
+        html: `<div style="transform: scale(${size / 24});">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="${color}" xmlns="http://www.w3.org/2000/svg">
+                    ${shape}
+                </svg>
+               </div>`,
+        iconSize: [24, 24],
+        iconAnchor: [12, 12]
     });
 
     return svgIcon;
 }
 
-// Function to add a marker to the map
+// Add a marker to the map
 function addMarker(lat, lng, popupText, easelBoardId) {
     try {
         const zoomLevel = map.getZoom();
-        const size = Math.max(8, zoomLevel * 2); // Adjust the formula as needed
+        const size = Math.max(19, zoomLevel * 2);
         var customIcon = getCustomIcon(easelBoardId, size);
         var marker = L.marker([lat, lng], { icon: customIcon });
 
@@ -181,14 +182,16 @@ function loadMarkersFromCSV(csvPath) {
             download: true,
             header: true,
             complete: function (results) {
-                console.log('CSV Data:', results.data);
                 results.data.forEach(function (row) {
                     if (row.Latitude && row.Longitude) {
                         var lat = parseFloat(row.Latitude);
                         var lng = parseFloat(row.Longitude);
                         var easelBoardId = row['Easel Board'];
                         var title = row['Poster Title'];
-                        var text = `${title}<br>${easelBoardId}`;
+                        var students = row['Students'];
+                        var faculty = row['Faculty'];
+                        var department = row['Poster Category'];
+                        var text = `<strong>${title}</strong><br><br><strong>Students</strong>: ${students}<br><strong>Faculty</strong>: ${faculty}<br><strong>Department/Team</strong>: ${department}`;
                         if (!isNaN(lat) && !isNaN(lng)) {
                             addMarker(lat, lng, text, easelBoardId);
                         } else {
@@ -208,7 +211,7 @@ function loadMarkersFromCSV(csvPath) {
 // Adjust marker size based on zoom level
 function adjustMarkerSize() {
     const zoomLevel = map.getZoom();
-    const newSize = Math.max(16, zoomLevel / 2); // Adjust the formula as needed
+    const newSize = zoomLevel == 20 ? 14 : (zoomLevel <= 21 ? 22 : 40); // Adjust sizes based on zoom level
     markers.forEach(({ marker, easelBoardId }) => {
         const newIcon = getCustomIcon(easelBoardId, newSize);
         marker.setIcon(newIcon);

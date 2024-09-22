@@ -1,5 +1,27 @@
 import { map } from './map.js';
 
+// DEV ONLY: Show Zoom level
+var ZoomLevel = L.Control.extend({
+    onAdd: function (map) {
+        this._div = L.DomUtil.create('div', 'zoom-level');
+        this.update(map.getZoom());
+        return this._div;
+    },
+    update: function (zoom) {
+        this._div.innerHTML = "Zoom Level: " + zoom;
+    }
+});
+
+// Add the Zoom Level control to the map
+var zoomLevel = new ZoomLevel({ position: 'topright' });
+map.addControl(zoomLevel);
+
+// Update the zoom level display on zoom events
+map.on('zoomend', function () {
+    zoomLevel.update(map.getZoom());
+});
+
+
 // DEV ONLY: Clear Cookies
 function clearCookies() {
     var cookies = document.cookie.split("; ");
