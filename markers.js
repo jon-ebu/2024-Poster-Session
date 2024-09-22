@@ -69,95 +69,36 @@ function getColorByEaselBoardId(value) {
     return color;
 }
 
-function getShapeByEaselBoardId(value) {
-    let easelBoardId = value.split('-')[0]; // Extract the easelBoardId
-    let shape;
-
-    switch (easelBoardId) {
-        case 'B':
-            shape = '<circle cx="12" cy="12" r="10"  />'; // Circle
-            break;
-        case 'BC':
-            shape = '<rect x="4" y="4" width="16" height="16"  />'; // Square
-            break;
-        case 'BCS':
-            shape = '<polygon points="12,2 22,22 2,22"  />'; // Triangle
-            break;
-        case 'BE':
-            shape = '<circle cx="12" cy="12" r="10"  />'; // Circle
-            break;
-        case 'C':
-            shape = '<rect x="4" y="4" width="16" height="16"  />'; // Square
-            break;
-        case 'CEP':
-            shape = '<circle cx="12" cy="12" r="10"  />'; // Circle
-            break;
-        case 'CHC':
-            shape = '<path d="M 2 2 L 22 2 L 12 22 Z"  />'; // Inverted Triangle
-            break;
-        case 'CS':
-            shape = '<path d="M 12 2 L 22 22 L 2 22 Z"  />'; // Inverted Triangle (alternative)
-            break;
-        case 'CSHC':
-            shape = '<rect x="4" y="4" width="16" height="16"  />'; // Square
-            break;
-        case 'CSM':
-            shape = '<path d="M 12 2 L 22 22 L 2 22 Z"  />'; // Same Triangle
-            break;
-        case 'CSN':
-            shape = '<circle cx="12" cy="12" r="10"  />'; // Circle;             break;
-        case 'E':
-            shape = '<circle cx="12" cy="12" r="10"  />'; // Circle; 
-            break;
-        case 'EM':
-            shape = '<polygon points="12,2 22,22 2,22"  />'; // Triangle
-            break;
-        case 'M':
-            shape = '<path d="M 2 2 L 22 2 L 12 22 Z"  />'; // Inverted Triangle
-            break;
-        case 'O':
-            shape = '<circle cx="12" cy="12" r="10"  />'; // Circle
-            break;
-        case 'P':
-            shape = '<circle cx="12" cy="12" r="10"  />'; // Circle
-            break;
-        case 'SSEF':
-            shape = '<polygon points="12,2 22,22 2,22" />'; // Triangle (same as other triangles)
-            break;
-        default:
-            shape = '<text x="2" y="12" >?</text>'; // Default shape (question mark)
-    }
-
-    return shape;
-}
-
-
-// Get custom SVG icon based on easel board ID
-function getCustomIcon(easelBoardId, size) {
-    const color = getColorByEaselBoardId(easelBoardId);
-    const shape = getShapeByEaselBoardId(easelBoardId);
-    const svgIcon = L.divIcon({
-        className: 'custom-div-icon', // Ensure the custom-div-icon class is applied
-        html: `<div style="transform: scale(${size / 24});">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="${color}" xmlns="http://www.w3.org/2000/svg">
-                    ${shape}
-                </svg>
-               </div>
-            <div class="easel-label">${easelBoardId}</div>`,
-        iconSize: [24, 24],
-        iconAnchor: [12, 12]
+// Function to create a custom blank icon
+function createBlankIcon(size) {
+    return L.divIcon({
+        className: 'custom-blank-icon', // Add custom-blank-icon class
+        html: `<div style="width: ${size}px; height: ${size}px;"></div>`,
+        iconSize: [size, size],
+        iconAnchor: [size / 2, size / 2]
     });
-
-    return svgIcon;
 }
 
 // Add a marker to the map
 function addMarker(lat, lng, popupText, easelBoardId) {
     try {
+        const color = getColorByEaselBoardId(easelBoardId);
         const zoomLevel = map.getZoom();
         const size = Math.max(19, zoomLevel * 2);
-        var customIcon = getCustomIcon(easelBoardId, size);
-        var marker = L.marker([lat, lng], { icon: customIcon });
+        const blankIcon = createBlankIcon(size);
+        var marker = new L.marker([lat, lng],  { icon: blankIcon }).on('click', function (e) {
+        });
+        marker.bindTooltip(easelBoardId,
+            {
+            permanent: true,
+            direction: 'center',
+            className: "easel-label",
+            offset: [-3, -5.5] // Adjust the vertical offset to position the tooltip above the marker
+
+         });
+
+        // Set the tooltip background color
+        console.log(marker.getTooltip().getElement())
 
         // Bind popup and add hover events
         marker.bindPopup(popupText);
@@ -176,10 +117,10 @@ function addMarker(lat, lng, popupText, easelBoardId) {
     }
 }
 
-// Load and parse the CSV file
-function loadMarkersFromCSV(csvPath) {
+// Load and parse the TSV file
+function loadMarkersFromTSV(tsvPath) {
     try {
-        Papa.parse(csvPath, {
+        Papa.parse(tsvPath, {
             download: true,
             header: true,
             complete: function (results) {
@@ -205,7 +146,7 @@ function loadMarkersFromCSV(csvPath) {
             }
         });
     } catch (error) {
-        console.error('Error loading CSV:', error);
+        console.error('Error loading TSV:', error);
     }
 }
 
@@ -213,8 +154,8 @@ function loadMarkersFromCSV(csvPath) {
 function adjustMarkerSize() {
     const zoomLevel = map.getZoom();
     const newSize = zoomLevel == 20 ? 14 : (zoomLevel <= 21 ? 22 : 40); // Adjust sizes based on zoom level
-    markers.forEach(({ marker, easelBoardId }) => {
-        const newIcon = getCustomIcon(easelBoardId, newSize);
+    markers.forEach(({ marker }) => {
+        const newIcon = createBlankIcon(newSize);
         marker.setIcon(newIcon);
     });
 }
@@ -222,4 +163,4 @@ function adjustMarkerSize() {
 // Add event listener for zoomend to adjust marker size
 map.on('zoomend', adjustMarkerSize);
 
-loadMarkersFromCSV('2024-poster-session-coordinates.csv');
+loadMarkersFromTSV('2024-poster-session-coordinates.tsv');
