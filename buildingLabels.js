@@ -5,7 +5,7 @@ const buildings = [
     { name: 'Parsons', lat: 34.1065491, lng: -117.7119928 },
     { name: 'Sprague', lat: 34.1061393, lng: -117.7122523 },
     { name: 'Keck/Jacobs', lat: 34.1056452, lng: -117.7120042 },
-    { name: 'Olin', lat: 34.1065491, lng: -117.7127123 },
+    { name: 'Olin', lat: 34.1061260, lng: -117.7127337 },
     { name: 'Hixon Courtyard', lat: 34.1061393, lng: -117.7116448 }
 ];
 

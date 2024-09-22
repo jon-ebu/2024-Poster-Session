@@ -27,3 +27,36 @@
     font-weight: bold;
     white-space: nowrap; /* Prevent text from wrapping */
 }
+
+.easel-label {
+    text-align: center;
+    font-size: 10px;
+    font-weight: bold;
+    white-space: nowrap; /* Prevent text from wrapping */
+
+}
+
+/* Positioning classes for labels */
+.label-top {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.label-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label-left {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.label-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
