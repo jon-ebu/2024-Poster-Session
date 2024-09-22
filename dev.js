@@ -1,5 +1,19 @@
 import { map } from './map.js';
 
+// DEV ONLY: Clear Cookies
+function clearCookies() {
+    var cookies = document.cookie.split("; ");
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+    }
+}
+
+// Clear cookies on page load
+clearCookies();
+
 // DEV ONLY: Extend Control class to create a custom control for displaying coordinates
 let Position = L.Control.extend({
     _container: null,
