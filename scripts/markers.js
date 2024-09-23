@@ -166,7 +166,7 @@ function focusOnMarker(lat, lng) {
   markerObjs.forEach(marker => {
       if (marker.getLatLng().lat === lat && marker.getLatLng().lng === lng) {
           marker.addTo(map);
-          map.setView([lat, lng], 21);
+          map.panTo([lat, lng], 19);
           marker.openPopup();
       } else {
           map.removeLayer(marker);
@@ -182,7 +182,6 @@ function focusOnMarker(lat, lng) {
 
 // Listen for messages from the table.js script
 window.addEventListener('message', function (event) {
-  console.log('Received:', event.data);
   if (event.data.lat && event.data.lng) {
       focusOnMarker(event.data.lat, event.data.lng);
   }
