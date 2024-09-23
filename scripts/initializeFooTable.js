@@ -1,3 +1,4 @@
+
 function initializeFooTable() {
   $("#tsvTable").footable({
     sorting: {

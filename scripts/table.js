@@ -6,7 +6,7 @@ function displayTable(tableData) {
 
   // Generate table headers
   let headerRow = "<thead><tr>";
-  tableData[0].slice(2).forEach((header) => {
+  tableData[0].slice(3).forEach((header) => {
     // Skip the first two columns
     if (header === "Easel Board") {
       headerRow += `<th>${header}</th>`;
@@ -23,9 +23,11 @@ function displayTable(tableData) {
   let bodyRows = "<tbody>";
   for (let i = 1; i < tableData.length; i++) {
     // Start from 1 to skip the header row
-    let row = "<tr>";
-    tableData[i].slice(2).forEach((cell, index) => {
-      // Skip the first two columns
+    const lat = tableData[i][0]; // Assuming latitude is in the first column
+    const lng = tableData[i][1]; // Assuming longitude is in the second column
+    let row = `<tr data-lat="${lat}" data-lng="${lng}">`;
+    tableData[i].slice(3).forEach((cell, index) => {
+      // Skip the first three columns
       if (tableData[0][index + 2] === "Poster Title") {
         row += `<td class="poster-title">${cell}</td>`;
       } else {
@@ -41,10 +43,16 @@ function displayTable(tableData) {
   // Initialize FooTable after table is generated
   initializeFooTable();
 }
-// Wait for the DOM to load and load the TSV file
+
+ // Attach row listener for pagination clicks
+$('#paging-ui-container').on('click', function () {
+  attachRowListeners();
+});
+
+// Wait for the DOM to load and load the TSV file and add event listeners
 document.addEventListener("DOMContentLoaded", function () {
   // Fetch the TSV file using AJAX
-  fetch("data/2024-poster-session-coordinates.tsv")
+  fetch("data/2024-poster-session-data.tsv")
     .then((response) => response.text())
     .then((text) => {
       const rows = text.split("\n");
@@ -52,6 +60,31 @@ document.addEventListener("DOMContentLoaded", function () {
         row.split("\t").map((cell) => cell.trim()),
       );
       displayTable(tableData);
+      attachRowListeners();
     })
     .catch((error) => console.error("Error fetching TSV file:", error));
 });
+
+// Function to attach event listeners to table rows
+function attachRowListeners() {
+  // Get a reference to the iframe containing map.html
+  const mapIframe = window.parent.document.getElementById('mapIframe');
+  
+  if (!mapIframe) {
+    console.error('Map iframe is not available');
+    return;
+  }
+
+  document.querySelectorAll('#tsvTable tbody tr').forEach(row => {
+    row.addEventListener('click', function () {
+      var lat = parseFloat(this.getAttribute('data-lat'));
+      var lng = parseFloat(this.getAttribute('data-lng'));
+      console.log(`Sending: ${lat}, ${lng}`);
+      if (mapIframe.contentWindow) {
+        mapIframe.contentWindow.postMessage({ lat: lat, lng: lng }, '*');
+      } else {
+        console.error('Map iframe content window is not available');
+      }
+    });
+  });
+}

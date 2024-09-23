@@ -2,6 +2,7 @@ import { map } from "./map.js";
 import { getCustomIcon } from "./markerIcons.js";
 
 var markers = [];
+var markerObjs = [];
 
 /**
  * Add a marker to the map
@@ -55,6 +56,7 @@ function addMarker(
       }
     });
     marker.addTo(map);
+    markerObjs.push(marker);
     markers.push({ marker, easelBoardId });
     adjustMarkerSize();
   } catch (error) {
@@ -153,4 +155,38 @@ map.on("zoomend", () => {
   adjustTooltipSize();
 });
 
+/**
+ * Focus on a specific marker and temporarily hide the rest
+ * @param {*} lat The latitude of the marker
+ * @param {*} lng The longitude of the marker
+ */
+function focusOnMarker(lat, lng) {
+  const hiddenMarkers = [];
+
+  markerObjs.forEach(marker => {
+      if (marker.getLatLng().lat === lat && marker.getLatLng().lng === lng) {
+          marker.addTo(map);
+          map.setView([lat, lng], 21);
+          marker.openPopup();
+      } else {
+          map.removeLayer(marker);
+          hiddenMarkers.push(marker);
+      }
+  });
+
+  // Restore hidden markers after clicking anywhere on the map
+  window.addEventListener("click", () => {
+      hiddenMarkers.forEach(marker => marker.addTo(map));
+  });
+}
+
+// Listen for messages from the table.js script
+window.addEventListener('message', function (event) {
+  console.log('Received:', event.data);
+  if (event.data.lat && event.data.lng) {
+      focusOnMarker(event.data.lat, event.data.lng);
+  }
+});
+
 loadMarkersFromTSV("data/2024-poster-session-data.tsv");
+

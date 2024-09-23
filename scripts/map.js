@@ -36,7 +36,7 @@ floorLayer = L.geoJSON(geojsonFeature_FLOOR, {
       color: "#000000", // Border color
       weight: 1, // Border width
       opacity: 1, // Border opacity
-      fillColor: "#f0e8db", // Fill color
+      fillColor: "#eadab8", // Fill color
       fillOpacity: 0.5, // Fill opacity
     };
   },
