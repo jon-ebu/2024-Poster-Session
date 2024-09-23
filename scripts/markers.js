@@ -3,7 +3,6 @@ import { getCustomIcon } from "./markerIcons.js";
 
 var markers = [];
 var markerObjs = [];
-
 /**
  * Add a marker to the map
  * @param {*} lat
@@ -155,6 +154,7 @@ map.on("zoomend", () => {
   adjustTooltipSize();
 });
 
+/** Functions for focusing on a marker when clicking a row" */
 var hiddenMarkers = [];
 let openPopUp = null;
 /**
@@ -164,17 +164,16 @@ let openPopUp = null;
  */
 function focusOnMarker(lat, lng) {
   hiddenMarkers = []; // Clear the hiddenMarkers array
-
   markerObjs.forEach(marker => {
-      if (marker.getLatLng().lat === lat && marker.getLatLng().lng === lng) {
-          marker.addTo(map);
-          map.panTo([lat, lng], 19);
-          marker.openPopup();
-          openPopUp = marker.getPopup();
-      } else {
-          map.removeLayer(marker);
-          hiddenMarkers.push(marker);
-      }
+    if (marker.getLatLng().lat === lat && marker.getLatLng().lng === lng) {
+      marker.addTo(map);
+      map.panTo([lat, lng], 19);
+      marker.openPopup();
+      openPopUp = marker.getPopup();
+    } else {
+      map.removeLayer(marker);
+      hiddenMarkers.push(marker);
+    }
   });
 }
 
@@ -184,18 +183,18 @@ function restoreHiddenMarkers() {
   hiddenMarkers.forEach(marker => marker.addTo(map));
   hiddenMarkers = []; // Clear the hiddenMarkers array after restoring
   if (openPopUp) {
-      map.closePopup(openPopUp);
-      openPopUp = null;
+    map.closePopup(openPopUp);
+    openPopUp = null;
   }
 }
 
 // Restore hidden markers when a row is collapsed, otherwise
 // focusOnMarker
-window.addEventListener('message', function(event) {
+window.addEventListener('message', function (event) {
   if (event.data.action === 'unhideMarkers') {
-      restoreHiddenMarkers();
+    restoreHiddenMarkers();
   } else if (event.data.action === 'focusMarker' && event.data.lat && event.data.lng) {
-      focusOnMarker(event.data.lat, event.data.lng);
+    focusOnMarker(event.data.lat, event.data.lng);
   }
 });
 
@@ -203,6 +202,7 @@ window.addEventListener('message', function(event) {
 window.addEventListener("click", () => {
   restoreHiddenMarkers();
 });
+
 
 loadMarkersFromTSV("data/2024-poster-session-data.tsv");
 

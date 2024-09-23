@@ -11,6 +11,7 @@ MAP
 [X] Refine bounds
 [ ] Adjust icon colors
 [ ] Refine polygons
+[ ] Focus on row when clicking on marker
 
 TABLE
 [X] Mobile-friendly table
@@ -18,6 +19,7 @@ TABLE
 [X] Search
 [] ! "Show on map" functionality for individual posters
 [ ] ! Fix "-" search
+[ ] Focus on marker when clicking row in desktop
 
 CSV
 [X] Add coordinates

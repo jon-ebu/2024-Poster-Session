@@ -1,5 +1,7 @@
 import { initializeFooTable } from "./initializeFooTable.js";
 
+
+
 function displayTable(tableData) {
   const table = document.getElementById("tsvTable");
   table.innerHTML = "";
@@ -65,10 +67,12 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => console.error("Error fetching TSV file:", error));
 });
 
-let rowLat, rowLng;
+
 
 // Function to attach event listeners to table rows
-function attachRowListeners() {
+let clickedRowLat, clickedRowLng;
+
+async function attachRowListeners() {
   let lat, lng;
   // Ensure the DOM is fully loaded before adding event listeners
   // Get a reference to the iframe containing map.html
@@ -78,17 +82,29 @@ function attachRowListeners() {
     return;
   }
 
-  // Add click event listeners to table rows and update rowLat and rowLng
+  // Add click event listeners to table rows and update clickedRowLat and clickedRowLng
   document.querySelectorAll('#tsvTable tbody tr').forEach(row => {
     row.addEventListener('click', function () {
-      var lat = parseFloat($(this).data('lat'));
-      var lng = parseFloat($(this).data('lng'));
-      console.log(`Row clicked: ${lat}, ${lng}`);
-      rowLat = lat;
-      rowLng = lng;
+      clickedRowLat = parseFloat($(this).data('lat'));
+      clickedRowLng = parseFloat($(this).data('lng'));
+      console.log(`Row clicked: ${clickedRowLat}, ${clickedRowLng}`);
     });
   });
 
+
+  // Function to wait for clickedRowLat and clickedRowLng to be updated
+  function waitForCoordinates() {
+    return new Promise((resolve, reject) => {
+      const checkCoordinates = () => {
+        if (clickedRowLat !== undefined && clickedRowLng !== undefined) {
+          resolve();
+        } else {
+          setTimeout(checkCoordinates, 50); // Check every 50ms
+        }
+      };
+      checkCoordinates();
+    });
+  }
 
   // Add event listeners to the table for collapsed and expanded rows
   $('#tsvTable').bind({
@@ -99,13 +115,24 @@ function attachRowListeners() {
         console.log('Row collapsed');
       }
     },
-    'expand.ft.row': function () {
+    'expand.ft.row': async function () {
       if (mapIframe.contentWindow) {
         console.log('Row expanded');
 
+        // Reset coordinates to ensure fresh values are used
+        clickedRowLat = undefined;
+        clickedRowLng = undefined;
+
+        // Wait for clickedRowLat and clickedRowLng to be updated
+        await waitForCoordinates();
+
         // Update lat and lng variables
-        lat = rowLat
-        lng = rowLng
+        lat = clickedRowLat
+        lng = clickedRowLng
+        if (!lat || !lng) {
+          console.error('Latitude or longitude is missing');
+          return;
+        }
         console.log(`Updated lat: ${lat}, lng: ${lng}`);
         if (mapIframe.contentWindow) {
           mapIframe.contentWindow.postMessage({ action: 'focusMarker', lat: lat, lng: lng }, '*');
