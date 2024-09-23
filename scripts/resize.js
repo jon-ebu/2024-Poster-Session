@@ -1,5 +1,5 @@
 const divider = document.getElementById('divider');
-const mapDiv = document.getElementById('map');
+const mapContainer = document.document.querySelector('.map-container');
 const tableContainer = document.querySelector('.table-container');
 
 let isDragging = false;
@@ -14,7 +14,7 @@ document.addEventListener('mousemove', function(e) {
     const containerHeight = document.querySelector('.container').clientHeight;
     const newMapHeight = e.clientY / containerHeight * 100;
     const newTableHeight = 100 - newMapHeight;
-    mapDiv.style.flex = `0 0 ${newMapHeight}%`;
+    mapContainer.style.flex = `0 0 ${newMapHeight}%`;
     tableContainer.style.flex = `0 0 ${newTableHeight}%`;
 });
 

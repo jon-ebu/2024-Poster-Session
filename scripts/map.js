@@ -2,10 +2,10 @@
 var map = L.map('map', {
     center: [34.1061046, -117.7119814],
     zoom: 21, // Default zoom level
-    maxZoom: 22, // Maximum zoom level
-    minZoom: 20,  // Minimum zoom level
-    zoomDelta: 0.5, // Zoom level increment per scroll event
-    zoomSnap: 0.5 // Ensure zoom levels snap to integers
+    maxZoom: 22, 
+    minZoom: 20, 
+    zoomDelta: 0.5,
+    zoomSnap: 0.5 
 })
 
 // Define the geographical bounds
@@ -18,8 +18,9 @@ map.setMaxBounds(bounds);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     zoom: 21,
-    maxZoom: 22, // Ensure the tile layer supports the specified max zoom level
-    minZoom: 21, // Ensure the tile layer supports the specified min zoom level
+    maxZoom: 22,
+    minZoom: 21,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
 export { map };

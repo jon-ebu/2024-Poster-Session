@@ -1,6 +1,12 @@
+
+html, body {
+    overflow-y: hidden;
+}
+
 #map {
     height: 100vh;
     width: 100%;
+
 }
 
 .mouseposition {
@@ -35,9 +41,4 @@
     font-weight: bold;
     white-space: nowrap; /* Prevent text from wrapping */
     
-}
-
-/* Class to hide the marker */
-.hide-marker svg {
-    visibility: hidden;
 }
