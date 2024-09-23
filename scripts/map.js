@@ -41,9 +41,11 @@ L.geoJSON(geojsonFeature, {
         if (feature.properties && feature.properties.popupContent) {
             layer.bindPopup(feature.properties.popupContent);
         }
+        /**  
         layer.on('click', function () {
             layer.enableEdit(); // Enable editing on click
         });
+        */
     }
 }).addTo(map);
 

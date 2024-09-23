@@ -10,8 +10,10 @@ var markers = [];
  * @param {*} lng 
  * @param {*} popupText 
  * @param {*} easelBoardId 
+ * @param {string} tooltipText - Text to display in the tooltip
+ * @param {string} tooltipDirection - Direction of the tooltip (top, bottom, left, right, center, auto)
  */
-function addMarker(lat, lng, popupText, easelBoardId) {
+function addMarker(lat, lng, popupText, easelBoardId, tooltipText, tooltipDirection = 'top') {
     try {
         const zoomLevel = map.getZoom();
         const size = Math.max(8, zoomLevel * 2); // Adjust the formula as needed
@@ -27,13 +29,17 @@ function addMarker(lat, lng, popupText, easelBoardId) {
             this.closePopup();
         });
 
+        // Bind tooltip with specified direction
+        marker.bindTooltip(tooltipText, { permanent: true, direction: tooltipDirection, minZoom: 21 });
+
         marker.addTo(map);
         markers.push({ marker, easelBoardId });
-        // adjustMarkerSize();
+        adjustMarkerSize();
     } catch (error) {
         console.error('Error adding marker:', error);
     }
 }
+
 
 /**
  * Adds markers to the map with coordinates and information from the TSV file
@@ -50,13 +56,14 @@ function loadMarkersFromTSV(tsvPath) {
                         var lat = parseFloat(row.Latitude);
                         var lng = parseFloat(row.Longitude);
                         var easelBoardId = row['Easel Board'];
+                        var tooltipDirection = row['Tooltip Direction'];
                         var title = row['Poster Title'];
                         var students = row['Students'];
                         var faculty = row['Faculty'];
                         var department = row['Poster Category'];
                         var text = `<strong>${title}</strong><br><br><strong>Students</strong>: ${students}<br><strong>Faculty</strong>: ${faculty}<br><strong>Department/Team</strong>: ${department}`;
                         if (!isNaN(lat) && !isNaN(lng)) {
-                            addMarker(lat, lng, text, easelBoardId);
+                            addMarker(lat, lng, text, easelBoardId, easelBoardId, tooltipDirection);
                         } else {
                             console.warn('Invalid coordinates:', row);
                         }
@@ -64,6 +71,8 @@ function loadMarkersFromTSV(tsvPath) {
                         console.warn('Missing coordinates:', row);
                     }
                 });
+                toggleTooltips(); // Ensure tooltips are correctly toggled on load
+
             }
         });
     } catch (error) {
@@ -71,20 +80,38 @@ function loadMarkersFromTSV(tsvPath) {
     }
 }
 
+
 /**
-function adjustMarkerSize(easelBoardId) {
+ * Adjusts the size of the markers based on the zoom level
+ */
+function adjustMarkerSize() {
     const zoomLevel = map.getZoom();
-    const newSize = zoomLevel == 20 ? 14 : (zoomLevel <= 21 ? 22 : 40); // Adjust sizes based on zoom level
-    markers.forEach(({ marker }) => {
+    const newSize = zoomLevel <= 20 ? 14 : (zoomLevel <= 21 ? 22 : 40); // Adjust sizes based on zoom level
+    markers.forEach(({ marker, easelBoardId }) => {
         const newIcon = getCustomIcon(easelBoardId, newSize);
         marker.setIcon(newIcon);
     });
 }
-    // Add event listener for zoomend to adjust marker size
-map.on('zoomend', adjustMarkerSize);
+
+/**
+ * Toggles tooltips based on the zoom level
  */
+function toggleTooltips() {
+    const zoomLevel = map.getZoom();
+    markers.forEach(({ marker }) => {
+        if (zoomLevel === 19) {
+            marker.closeTooltip();
+        } else {
+            marker.openTooltip();
+        }
+    })
+}
 
+// Event listener for zoomend to adjust marker size and toggle tooltips
+map.on('zoomend', () => {
+    adjustMarkerSize();
+    toggleTooltips();
+});
 
+loadMarkersFromTSV('data/2024-poster-session-data.tsv');
 
-
-loadMarkersFromTSV('data/2024-poster-session-coordinates.tsv');
