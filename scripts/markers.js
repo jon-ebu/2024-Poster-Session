@@ -1,104 +1,22 @@
 import { map } from './map.js';
+import { getCustomIcon } from './markerIcons.js';
+
 
 var markers = [];
 
 /**
- * Get the color corresponding to the easel easelBoardId value
- * @param {*} value The value to extract the easelBoardId from, e.g. 'B-01' or 'BC-02'
- * @returns  The color corresponding to the easelBoardId value
+ * Add a marker to the map
+ * @param {*} lat 
+ * @param {*} lng 
+ * @param {*} popupText 
+ * @param {*} easelBoardId 
  */
-function getColorByEaselBoardId(value) {
-    let easelBoardId = value.split('-')[0]; // Extract the easelBoardId
-    let color;
-    switch (easelBoardId) {
-        case 'B':
-            color = '#E69F00'; // orange
-            break;
-        case 'BC':
-            color = '#56B4E9'; // sky blue
-            break;
-        case 'BCS':
-            color = '#009E73'; // bluish green
-            break;
-        case 'BE':
-            color = '#F0E442'; // yellow
-            break;
-        case 'C':
-            color = '#0072B2'; // blue
-            break;
-        case 'CEP':
-            color = '#D55E00'; // vermillion
-            break;
-        case 'CHC':
-            color = '#CC79A7'; // reddish purple
-            break;
-        case 'CS':
-            color = '#999999'; // gray
-            break;
-        case 'CSHC':
-            color = '#E69F00'; // orange
-            break;
-        case 'CSM':
-            color = '#56B4E9'; // sky blue
-            break;
-        case 'CSN':
-            color = '#009E73'; // bluish green
-            break;
-        case 'E':
-            color = '#0072B2'; // blue
-            break;
-        case 'EM':
-            color = '#F0E442'; // yellow
-            break;
-        case 'M':
-            color = '#D55E00'; // vermillion
-            break;
-        case 'O':
-            color = '#CC79A7'; // reddish purple
-            break;
-        case 'P':
-            color = '#999999'; // gray
-            break;
-        case 'SSEF':
-            color = '#E69F00'; // orange
-            break;
-        default:
-            color = '#000000'; // black for unrecognized easelBoardIdes
-    }
-
-    return color;
-}
-
-// Function to create a custom blank icon
-function createBlankIcon(size) {
-    return L.divIcon({
-        className: 'custom-blank-icon', // Add custom-blank-icon class
-        html: `<div style="width: ${size}px; height: ${size}px;"></div>`,
-        iconSize: [size, size],
-        iconAnchor: [size / 2, size / 2]
-    });
-}
-
-// Add a marker to the map
 function addMarker(lat, lng, popupText, easelBoardId) {
     try {
-        const color = getColorByEaselBoardId(easelBoardId);
         const zoomLevel = map.getZoom();
-        const size = Math.max(19, zoomLevel * 2);
-        const blankIcon = createBlankIcon(size);
-        var marker = new L.marker([lat, lng],  { icon: blankIcon }).on('click', function (e) {
-        });
-        marker.bindTooltip(easelBoardId,
-            {
-            permanent: true,
-            direction: 'center',
-            className: "easel-label",
-            offset: [-3, -5.5] // Adjust the vertical offset to position the tooltip above the marker
-
-         });
-
-        // Set the tooltip background color
-        console.log(marker.getTooltip().getElement())
+        const size = Math.max(8, zoomLevel * 2); // Adjust the formula as needed
+        var customIcon = getCustomIcon(easelBoardId, size);
+        var marker = L.marker([lat, lng], { icon: customIcon });
 
         // Bind popup and add hover events
         marker.bindPopup(popupText);
@@ -111,13 +29,16 @@ function addMarker(lat, lng, popupText, easelBoardId) {
 
         marker.addTo(map);
         markers.push({ marker, easelBoardId });
-        adjustMarkerSize();
+        // adjustMarkerSize();
     } catch (error) {
         console.error('Error adding marker:', error);
     }
 }
 
-// Load and parse the TSV file
+/**
+ * Adds markers to the map with coordinates and information from the TSV file
+ * @param {*} tsvPath The file path to the TSV file
+ */
 function loadMarkersFromTSV(tsvPath) {
     try {
         Papa.parse(tsvPath, {
@@ -150,17 +71,20 @@ function loadMarkersFromTSV(tsvPath) {
     }
 }
 
-// Adjust marker size based on zoom level
-function adjustMarkerSize() {
+/**
+function adjustMarkerSize(easelBoardId) {
     const zoomLevel = map.getZoom();
     const newSize = zoomLevel == 20 ? 14 : (zoomLevel <= 21 ? 22 : 40); // Adjust sizes based on zoom level
     markers.forEach(({ marker }) => {
-        const newIcon = createBlankIcon(newSize);
+        const newIcon = getCustomIcon(easelBoardId, newSize);
         marker.setIcon(newIcon);
     });
 }
-
-// Add event listener for zoomend to adjust marker size
+    // Add event listener for zoomend to adjust marker size
 map.on('zoomend', adjustMarkerSize);
+ */
+
+
+
 
 loadMarkersFromTSV('data/2024-poster-session-coordinates.tsv');
