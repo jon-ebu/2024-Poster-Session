@@ -10,7 +10,8 @@ body, html {
         font-weight: bold;
         background-color: #fdb913;
         margin: 0; 
-    }
+        cursor: pointer; 
+        }
 
 .container {
     display: flex;

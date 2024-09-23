@@ -18,7 +18,7 @@ var map = L.map("map", {
   minZoom: 18,
   zoomDelta: 1,
   zoomSnap: 1,
-  editable: true,
+  editable: false,
   layers: [defaultLayer],
 });
 
@@ -46,18 +46,17 @@ floorLayer = L.geoJSON(geojsonFeature_FLOOR, {
       layer.bindPopup(feature.properties.popupContent);
     }
 
-
+    // Add click event listener to log coordinates
+    /** 
          layer.on('click', function (e) {
             var coordinates = layer.getLatLngs();
-            var formattedCoordinates = coordinates[0].map(coord => `    [${coord.lng}, ${coord.lat}]`).join(',\n');
-            console.log('Polygon coordinates:\n' + formattedCoordinates);
+            // var formattedCoordinates = coordinates[0].map(coord => `    [${coord.lng}, ${coord.lat}]`).join(',\n');
+            // console.log('Polygon coordinates:\n' + formattedCoordinates);
         });
-
         layer.on('click', function () {
             layer.enableEdit(); // Enable editing on click
         });
-
-    // Add click event listener to log coordinates
+        */
   },
 });
 
@@ -77,23 +76,31 @@ buildingLayer = L.geoJSON(geojsonFeature_BUILDINGS, {
       layer.bindPopup(feature.properties.popupContent);
     }
     // Add click event listener to log coordinates
+    /**
     layer.on("click", function (e) {
       var coordinates = layer.getLatLngs();
       var formattedCoordinates = coordinates[0]
         .map((coord) => `    [${coord.lng}, ${coord.lat}]`)
         .join(",\n");
-      console.log("Polygon coordinates:\n" + formattedCoordinates);
+      // console.log("Polygon coordinates:\n" + formattedCoordinates);
     });
+    
 
     layer.on("click", function () {
       layer.enableEdit(); // Enable editing on click
     });
+     */
   },
 });
 
+// Add the 2D view layer and floor layer to the map by default
+buildingLayer.addTo(map);
+floorLayer.addTo(map);
+map.removeLayer(defaultLayer);
+
 var baseLayers = {
-  "Satllite View": defaultLayer,
   "2D View": buildingLayer,
+  "Satellite View": defaultLayer,
 };
 
 // Ensure the floor layer is below the main polygon layer

@@ -72,64 +72,7 @@ function getColorByEaselBoardId(value) {
  */
 function getShapeByEaselBoardId(value) {
   let easelBoardId = value.split("-")[0]; // Extract the easelBoardId
-  let shape;
-
-  switch (easelBoardId) {
-    case "B":
-      shape = '<circle cx="12" cy="12" r="10"  />'; // Circle
-      break;
-    case "BC":
-      shape = '<rect x="4" y="4" width="16" height="16"  />'; // Square
-      break;
-    case "BCS":
-      shape = '<polygon points="12,2 22,22 2,22"  />'; // Triangle
-      break;
-    case "BE":
-      shape = '<circle cx="12" cy="12" r="10"  />'; // Circle
-      break;
-    case "C":
-      shape = '<rect x="4" y="4" width="16" height="16"  />'; // Square
-      break;
-    case "CEP":
-      shape = '<circle cx="12" cy="12" r="10"  />'; // Circle
-      break;
-    case "CHC":
-      shape = '<path d="M 2 2 L 22 2 L 12 22 Z"  />'; // Inverted Triangle
-      break;
-    case "CS":
-      shape = '<path d="M 12 2 L 22 22 L 2 22 Z"  />'; // Inverted Triangle (alternative)
-      break;
-    case "CSHC":
-      shape = '<rect x="4" y="4" width="16" height="16"  />'; // Square
-      break;
-    case "CSM":
-      shape = '<path d="M 12 2 L 22 22 L 2 22 Z"  />'; // Same Triangle
-      break;
-    case "CSN":
-      shape = '<circle cx="12" cy="12" r="5"  />'; // Smaller Circle
-      break;
-    case "E":
-      shape = '<circle cx="12" cy="12" r="10"  />'; // Circle;
-      break;
-    case "EM":
-      shape = '<polygon points="12,2 22,22 2,22"  />'; // Triangle
-      break;
-    case "M":
-      shape = '<path d="M 2 2 L 22 2 L 12 22 Z"  />'; // Inverted Triangle
-      break;
-    case "O":
-      shape = '<circle cx="12" cy="12" r="10"  />'; // Circle
-      break;
-    case "P":
-      shape = '<circle cx="12" cy="12" r="10"  />'; // Circle
-      break;
-    case "SSEF":
-      shape = '<polygon points="12,2 22,22 2,22" />'; // Triangle (same as other triangles)
-      break;
-    default:
-      shape = '<text x="2" y="12" >?</text>'; // Default shape (question mark)
-  }
-
+  let shape = '<circle cx="12" cy="12" r="10"  />'; // Circle
   return shape;
 }
 

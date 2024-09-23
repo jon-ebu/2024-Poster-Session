@@ -84,7 +84,7 @@ function loadMarkersFromTSV(tsvPath) {
             var students = row["Students"];
             var faculty = row["Faculty"];
             var department = row["Poster Category"];
-            var text = `<strong>${title}</strong><br><br><strong>Students</strong>: ${students}<br><strong>Faculty</strong>: ${faculty}<br><strong>Department/Team</strong>: ${department}<br><strong>Easel ID</strong>: ${easelBoardId} `;
+            var text = `<strong>${title}</strong><br><br><strong>`;
             if (!isNaN(lat) && !isNaN(lng)) {
               addMarker(
                 lat,
@@ -155,36 +155,53 @@ map.on("zoomend", () => {
   adjustTooltipSize();
 });
 
+var hiddenMarkers = [];
+let openPopUp = null;
 /**
  * Focus on a specific marker and temporarily hide the rest
  * @param {*} lat The latitude of the marker
  * @param {*} lng The longitude of the marker
  */
 function focusOnMarker(lat, lng) {
-  const hiddenMarkers = [];
+  hiddenMarkers = []; // Clear the hiddenMarkers array
 
   markerObjs.forEach(marker => {
       if (marker.getLatLng().lat === lat && marker.getLatLng().lng === lng) {
           marker.addTo(map);
           map.panTo([lat, lng], 19);
           marker.openPopup();
+          openPopUp = marker.getPopup();
       } else {
           map.removeLayer(marker);
           hiddenMarkers.push(marker);
       }
   });
-
-  // Restore hidden markers after clicking anywhere on the map
-  window.addEventListener("click", () => {
-      hiddenMarkers.forEach(marker => marker.addTo(map));
-  });
 }
 
-// Listen for messages from the table.js script
-window.addEventListener('message', function (event) {
-  if (event.data.lat && event.data.lng) {
+// Restore hidden markers and close popup
+function restoreHiddenMarkers() {
+  console.log(hiddenMarkers)
+  hiddenMarkers.forEach(marker => marker.addTo(map));
+  hiddenMarkers = []; // Clear the hiddenMarkers array after restoring
+  if (openPopUp) {
+      map.closePopup(openPopUp);
+      openPopUp = null;
+  }
+}
+
+// Restore hidden markers when a row is collapsed, otherwise
+// focusOnMarker
+window.addEventListener('message', function(event) {
+  if (event.data.action === 'unhideMarkers') {
+      restoreHiddenMarkers();
+  } else if (event.data.action === 'focusMarker' && event.data.lat && event.data.lng) {
       focusOnMarker(event.data.lat, event.data.lng);
   }
+});
+
+// Restore hidden markers after clicking anywhere on the map
+window.addEventListener("click", () => {
+  restoreHiddenMarkers();
 });
 
 loadMarkersFromTSV("data/2024-poster-session-data.tsv");

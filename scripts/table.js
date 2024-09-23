@@ -44,7 +44,7 @@ function displayTable(tableData) {
   initializeFooTable();
 }
 
- // Attach row listener for pagination clicks
+// Attach row listener for pagination clicks
 $('#paging-ui-container').on('click', function () {
   attachRowListeners();
 });
@@ -65,26 +65,54 @@ document.addEventListener("DOMContentLoaded", function () {
     .catch((error) => console.error("Error fetching TSV file:", error));
 });
 
+let rowLat, rowLng;
+
 // Function to attach event listeners to table rows
 function attachRowListeners() {
+  let lat, lng;
+  // Ensure the DOM is fully loaded before adding event listeners
   // Get a reference to the iframe containing map.html
   const mapIframe = window.parent.document.getElementById('mapIframe');
-  
   if (!mapIframe) {
     console.error('Map iframe is not available');
     return;
   }
 
+  // Add click event listeners to table rows and update rowLat and rowLng
   document.querySelectorAll('#tsvTable tbody tr').forEach(row => {
     row.addEventListener('click', function () {
-      var lat = parseFloat(this.getAttribute('data-lat'));
-      var lng = parseFloat(this.getAttribute('data-lng'));
-      console.log(`Sending: ${lat}, ${lng}`);
-      if (mapIframe.contentWindow) {
-        mapIframe.contentWindow.postMessage({ lat: lat, lng: lng }, '*');
-      } else {
-        console.error('Map iframe content window is not available');
-      }
+      var lat = parseFloat($(this).data('lat'));
+      var lng = parseFloat($(this).data('lng'));
+      console.log(`Row clicked: ${lat}, ${lng}`);
+      rowLat = lat;
+      rowLng = lng;
     });
   });
+
+
+  // Add event listeners to the table for collapsed and expanded rows
+  $('#tsvTable').bind({
+    'collapse.ft.row': function () {
+      if (mapIframe.contentWindow) {
+        // Send a message to markers.js
+        mapIframe.contentWindow.postMessage({ action: 'unhideMarkers' }, '*');
+        console.log('Row collapsed');
+      }
+    },
+    'expand.ft.row': function () {
+      if (mapIframe.contentWindow) {
+        console.log('Row expanded');
+
+        // Update lat and lng variables
+        lat = rowLat
+        lng = rowLng
+        console.log(`Updated lat: ${lat}, lng: ${lng}`);
+        if (mapIframe.contentWindow) {
+          mapIframe.contentWindow.postMessage({ action: 'focusMarker', lat: lat, lng: lng }, '*');
+        }
+      }
+    }
+
+  });
 }
+

@@ -6,13 +6,24 @@ function initializeFooTable() {
     },
     filtering: {
       enabled: true,
-      focus: true,
+      focus: false,
       container: "#filter-form-container",
     },
     toggle: true,
     paging: {
       container: "#paging-ui-container",
     },
+    'on': {
+      'postinit.ft.table': function (e, ft) {
+        /*
+         * e: The jQuery.Event object for the event.
+         * ft: The instance of the plugin raising the event.
+         */
+        // Sort the table by the "easel board" column on load
+        const easelBoardColumnIndex = 6; // Replace with the actual index of the "easel board" column
+        ft.sort(easelBoardColumnIndex, 'asc');
+      }
+    }
   });
   $("#tsvTable").on("footable_toggle", function (e) {
     // Get the current toggle element that was clicked
@@ -31,7 +42,6 @@ function initializeFooTable() {
       // Set the current toggle to expanded
       $currentToggle.attr("data-expanded", "true");
     }
-  });
+  })
 }
-
 export { initializeFooTable };

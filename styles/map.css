@@ -64,11 +64,12 @@ html, body {
 /* Make the Leaflet popup window transparent */
 .leaflet-popup-content-wrapper  {
     background-color: rgba(255, 255, 255, 0.4); /* Semi-transparent background */
-    border-radius: 5px;
     padding: 10px;
+    opacity: 0.9;
 }
 
 /* Ensure text inside the Leaflet popup is fully opaque */
 .leaflet-popup-content {
     color: #000000; /* Fully opaque text color */
+    opacity: 1;
 }
