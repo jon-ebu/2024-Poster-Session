@@ -5,7 +5,8 @@ function initializeFooTable() {
         },
         filtering: {
             enabled: true,
-            focus: true
+            focus: true,
+            container: "#filter-form-container"
         },
         toggle: true,
         paging: {

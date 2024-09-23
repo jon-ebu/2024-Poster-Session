@@ -163,4 +163,4 @@ function adjustMarkerSize() {
 // Add event listener for zoomend to adjust marker size
 map.on('zoomend', adjustMarkerSize);
 
-loadMarkersFromTSV('2024-poster-session-coordinates.tsv');
+loadMarkersFromTSV('data/2024-poster-session-coordinates.tsv');

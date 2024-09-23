@@ -40,6 +40,12 @@
             word-break: keep-all;
         }
 
+        #searchbar {
+            width: 100% !important;
+            padding: 1rem; /* Adjust padding as needed */
+            box-sizing: border-box; /* Ensure padding is included in the element's total width */
+        }
+
         .poster-title {
             white-space: normal !important;
             /* Allow text to wrap */
@@ -50,8 +56,6 @@
             max-width: 150px;
             /* Optional: Set a max width */
         }
-
-  
 
         .container {
             display: flex;
@@ -77,24 +81,18 @@
             position: relative !important;
             /* Ensure it's part of the flex layout */
         }
-
-        .poster-title {
-            white-space: normal !important;
-            /* Allow text to wrap */
-            word-wrap: break-word !important;
-            /* Break long words */
-            overflow-wrap: break-word !important;
-            /* Similar to word-wrap */
-
-        }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <div id="searchbar">
+            <div id="filter-form-container"></div>
+        </div>
         <div class="table-responsive">
-            <table id="tsvTable" class="footable table table-striped" data-paging-container="#paging-ui-container"
-                data-paging="true" data-filtering="true" data-sorting="true" data-state="true" data-filter-focus="true">
+            <table id="tsvTable" class="footable table table-striped" data-filter-container="#filter-form-container"
+                data-paging-container="#paging-ui-container" data-paging="true" data-filtering="true"
+                data-sorting="true" data-state="true" data-filter-focus="true">
             </table>
         </div>
         <div class="pagination-wrapper">
