@@ -7,7 +7,8 @@ body {
 }
 
 thead {
-    background-color: #fdb913;
+    background-color: white;
+    color: black;
 }
 
 .poster-title {
@@ -128,8 +129,23 @@ table.footable-details>tbody>tr>td:nth-child(2) {
 }
 
 /* Bold text for rows with data-expanded="true" */
+#tsvTable tr {
+    transition: background-color 0.3s ease; /* Add transition for background color */
+}
 #tsvTable tr[data-expanded="true"] {
     font-weight: bold;
+    background-color: #fdb913;
+}
+
+/* Highlight effect for non-mobile view */
+@media (min-width: 577px) {
+    #tsvTable tr {
+        transition: background-color 0.3s ease; /* Add transition for background color */
+    }
+
+    #tsvTable tr.selected {
+        background-color: #fdb913; /* Yellow background color */
+    }
 }
 
 .footable-paging-external span.label, table.footable>tfoot>tr.footable-paging>td>span.label {

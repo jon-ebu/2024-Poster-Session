@@ -3,6 +3,15 @@ body, html {
     margin: 0;
     overflow-y: hidden;
 }
+
+#header {
+        text-align: center;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        font-weight: bold;
+        background-color: #fdb913;
+        margin: 0; 
+    }
+
 .container {
     display: flex;
     flex-direction: column;
