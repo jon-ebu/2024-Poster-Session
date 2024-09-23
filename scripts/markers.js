@@ -17,8 +17,11 @@ function addMarker(lat, lng, popupText, easelBoardId, tooltipText, tooltipDirect
     try {
         const zoomLevel = map.getZoom();
         const size = Math.max(8, zoomLevel * 2); // Adjust the formula as needed
-        var customIcon = getCustomIcon(easelBoardId, size);
-        var marker = L.marker([lat, lng], { icon: customIcon });
+        var customIcon = getCustomIcon(easelBoardId, 40);
+        var marker = L.marker([lat, lng], {
+            icon: customIcon,
+            riseOnHover: true // Bring marker to front on hover
+        });
 
         // Bind popup and add hover events
         marker.bindPopup(popupText);
@@ -32,6 +35,15 @@ function addMarker(lat, lng, popupText, easelBoardId, tooltipText, tooltipDirect
         // Bind tooltip with specified direction
         marker.bindTooltip(tooltipText, { permanent: true, direction: tooltipDirection, minZoom: 21 });
 
+        // Add event listener to tooltip to open popup on hover
+        marker.on('tooltipopen', function () {
+            var tooltipElement = document.querySelector('.leaflet-tooltip');
+            if (tooltipElement) {
+                tooltipElement.addEventListener('mouseover', function () {
+                    marker.openPopup();
+                });
+            }
+        });
         marker.addTo(map);
         markers.push({ marker, easelBoardId });
         adjustMarkerSize();
@@ -61,7 +73,7 @@ function loadMarkersFromTSV(tsvPath) {
                         var students = row['Students'];
                         var faculty = row['Faculty'];
                         var department = row['Poster Category'];
-                        var text = `<strong>${title}</strong><br><br><strong>Students</strong>: ${students}<br><strong>Faculty</strong>: ${faculty}<br><strong>Department/Team</strong>: ${department}`;
+                        var text = `<strong>${title}</strong><br><br><strong>Students</strong>: ${students}<br><strong>Faculty</strong>: ${faculty}<br><strong>Department/Team</strong>: ${department}<br><strong>Easel ID</strong>: ${easelBoardId} `;
                         if (!isNaN(lat) && !isNaN(lng)) {
                             addMarker(lat, lng, text, easelBoardId, easelBoardId, tooltipDirection);
                         } else {
@@ -107,10 +119,23 @@ function toggleTooltips() {
     })
 }
 
+/**
+ * Adjusts the font size of the tooltips based on the zoom level
+ */
+function adjustTooltipSize() {
+    const zoomLevel = map.getZoom();
+    const newFontSize = zoomLevel <= 20 ? '10px' : (zoomLevel <= 21 ? '12px' : '14px'); // Adjust font sizes based on zoom level
+    const tooltips = document.querySelectorAll('.leaflet-tooltip');
+    tooltips.forEach(tooltip => {
+        tooltip.style.fontSize = newFontSize;
+    });
+}
+
 // Event listener for zoomend to adjust marker size and toggle tooltips
 map.on('zoomend', () => {
     adjustMarkerSize();
     toggleTooltips();
+    adjustTooltipSize();
 });
 
 loadMarkersFromTSV('data/2024-poster-session-data.tsv');

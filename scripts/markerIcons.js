@@ -17,7 +17,7 @@ function getColorByEaselBoardId(value) {
             color = '#009E73'; // bluish green
             break;
         case 'BE':
-            color = '#F0E442'; // yellow
+            color = '#CC79A7'; // yellow
             break;
         case 'C':
             color = '#0072B2'; // blue
@@ -29,7 +29,7 @@ function getColorByEaselBoardId(value) {
             color = '#CC79A7'; // reddish purple
             break;
         case 'CS':
-            color = '#999999'; // gray
+            color = '#F0E442'; // gray
             break;
         case 'CSHC':
             color = '#E69F00'; // orange
@@ -44,7 +44,7 @@ function getColorByEaselBoardId(value) {
             color = '#0072B2'; // blue
             break;
         case 'EM':
-            color = '#F0E442'; // yellow
+            color = '#CC79A7'; // yellow
             break;
         case 'M':
             color = '#D55E00'; // vermillion
@@ -53,7 +53,7 @@ function getColorByEaselBoardId(value) {
             color = '#CC79A7'; // reddish purple
             break;
         case 'P':
-            color = '#999999'; // gray
+            color = '#CC79A7'; // gray
             break;
         case 'SSEF':
             color = '#E69F00'; // orange
@@ -148,10 +148,13 @@ function getCustomIcon(easelBoardId, size) {
                 ${shape}
                </svg>`,
         iconSize: [size, size],
-        iconAnchor: [size / 2, size / 2]
+        iconAnchor: [size / 2, size / 2],
+        popupAnchor: [0, -size * 1.64], // Adjust popup anchor proportionally
+
     });
 
     return svgIcon;
 }
+
 
 export { getCustomIcon, getColorByEaselBoardId, getShapeByEaselBoardId };

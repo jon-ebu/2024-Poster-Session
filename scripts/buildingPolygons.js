@@ -1,54 +1,25 @@
 // GeoJSON data for polygons
-var geojsonFeature = {
+var geojsonFeature_BUILDINGS = {
     "type": "FeatureCollection",
     "features": [
         {
             "type": "Feature",
             "properties": {
                 "name": "Parsons",
-                "popupContent": "This is Parsons"
             },
             "geometry": {
                 "type": "Polygon",
                 "coordinates":
                     [
                         [
-                            [
-                                -117.712339,
-                                34.106663
-                            ],
-                            [
-                                -117.711696,
-                                34.106659
-                            ],
-                            [
-                                -117.711696,
-                                34.106293
-                            ],
-                            [
-                                -117.711897,
-                                34.106293
-                            ],
-                            [
-                                -117.711897,
-                                34.106495
-                            ],
-                            [
-                                -117.712103,
-                                34.106495
-                            ],
-                            [
-                                -117.712101,
-                                34.106306
-                            ],
-                            [
-                                -117.712342,
-                                34.106306
-                            ],
-                            [
-                                -117.712339,
-                                34.106663
-                            ]
+                            [-117.71234516054392, 34.106668149477386],
+                            [-117.711696, 34.106659],
+                            [-117.71170143038034, 34.10629254639444],
+                            [-117.71190594881774, 34.1062967105176],
+                            [-117.711897, 34.106495],
+                            [-117.71209705621007, 34.10649464493455],
+                            [-117.71210242062809, 34.10629948659956],
+                            [-117.71235220134261, 34.10630087464052]
 
                         ]
                     ]
@@ -58,7 +29,6 @@ var geojsonFeature = {
             "type": "Feature",
             "properties": {
                 "name": "Sprague",
-                "popupContent": "This is Sprague"
             },
             "geometry": {
                 "type": "Polygon",
@@ -94,7 +64,6 @@ var geojsonFeature = {
             "type": "Feature",
             "properties": {
                 "name": "Jacobs/Keck",
-                "popupContent": "This is Jacobs/Keck"
             },
             "geometry": {
                 "type": "Polygon",
@@ -586,4 +555,4 @@ var geojsonFeature = {
     ]
 };
 
-export { geojsonFeature };
+export { geojsonFeature_BUILDINGS };

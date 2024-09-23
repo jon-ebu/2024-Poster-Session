@@ -6,6 +6,8 @@ html, body {
 #map {
     height: 100vh;
     width: 100%;
+    background-color: #fafafa !important;
+
 
 }
 
@@ -24,14 +26,15 @@ html, body {
 
 .building-text-label {
     align-self: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid #000;
-    border-radius: 5px;
-    padding: 5px;
     text-align: center;
-    font-size: 14px;
+    font-size: 25px;
     font-weight: bold;
     white-space: nowrap; /* Prevent text from wrapping */
+    text-shadow: 
+    -1px -1px 0 #fff,  
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff; /* White outline */
 }
 
 .easel-label {
@@ -41,4 +44,18 @@ html, body {
     font-weight: bold;
     white-space: nowrap; /* Prevent text from wrapping */
     
+}
+
+.leaflet-tooltip {
+    border-radius: 4px;
+    padding: 5px 5px; 
+    font-size: 13px; 
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+    cursor: pointer; 
+}
+
+/* Hide the Leaflet logo */
+.leaflet-control-attribution {
+    display: none !important;
 }
