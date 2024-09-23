@@ -11,6 +11,8 @@ function initializeFooTable() {
     },
     toggle: true,
     paging: {
+      enabled: false,
+      limit: 1000,
       container: "#paging-ui-container",
     },
     'on': {
@@ -20,7 +22,7 @@ function initializeFooTable() {
          * ft: The instance of the plugin raising the event.
          */
         // Sort the table by the "easel board" column on load
-        const easelBoardColumnIndex = 6; // Replace with the actual index of the "easel board" column
+        const easelBoardColumnIndex = 6; 
         ft.sort(easelBoardColumnIndex, 'asc');
       }
     }

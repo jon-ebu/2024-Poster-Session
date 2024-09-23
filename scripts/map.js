@@ -51,7 +51,7 @@ floorLayer = L.geoJSON(geojsonFeature_FLOOR, {
          layer.on('click', function (e) {
             var coordinates = layer.getLatLngs();
             // var formattedCoordinates = coordinates[0].map(coord => `    [${coord.lng}, ${coord.lat}]`).join(',\n');
-            // console.log('Polygon coordinates:\n' + formattedCoordinates);
+            // // console.log('Polygon coordinates:\n' + formattedCoordinates);
         });
         layer.on('click', function () {
             layer.enableEdit(); // Enable editing on click
@@ -82,7 +82,7 @@ buildingLayer = L.geoJSON(geojsonFeature_BUILDINGS, {
       var formattedCoordinates = coordinates[0]
         .map((coord) => `    [${coord.lng}, ${coord.lat}]`)
         .join(",\n");
-      // console.log("Polygon coordinates:\n" + formattedCoordinates);
+      // // console.log("Polygon coordinates:\n" + formattedCoordinates);
     });
     
 

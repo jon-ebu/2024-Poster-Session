@@ -55,6 +55,17 @@ function addMarker(
       }
     });
     marker.addTo(map);
+    /** Event listener to help focus on a row when selecting a marker */
+    const tableIframe = window.parent.document.getElementById('tableIframe');
+    if (!tableIframe) {
+      console.error('Table iframe is not available');
+      return;
+    }
+    marker.addEventListener('click', function () {
+      const lat = marker.getLatLng().lat;
+      const lng = marker.getLatLng().lng;
+      tableIframe.contentWindow.postMessage({ action: 'focusRow', lat: lat, lng: lng }, '*');
+    });
     markerObjs.push(marker);
     markers.push({ marker, easelBoardId });
     adjustMarkerSize();
@@ -167,7 +178,8 @@ function focusOnMarker(lat, lng) {
   markerObjs.forEach(marker => {
     if (marker.getLatLng().lat === lat && marker.getLatLng().lng === lng) {
       marker.addTo(map);
-      map.panTo([lat, lng], 19);
+      map.zoomLevel = 21;
+      map.panTo([lat, lng], {animate: true, duration: 2.0, easeLinearity: 2.0});
       marker.openPopup();
       openPopUp = marker.getPopup();
     } else {
@@ -179,7 +191,7 @@ function focusOnMarker(lat, lng) {
 
 // Restore hidden markers and close popup
 function restoreHiddenMarkers() {
-  console.log(hiddenMarkers)
+  // console.log(hiddenMarkers)
   hiddenMarkers.forEach(marker => marker.addTo(map));
   hiddenMarkers = []; // Clear the hiddenMarkers array after restoring
   if (openPopUp) {

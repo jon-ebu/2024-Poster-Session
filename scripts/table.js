@@ -1,7 +1,5 @@
 import { initializeFooTable } from "./initializeFooTable.js";
 
-
-
 function displayTable(tableData) {
   const table = document.getElementById("tsvTable");
   table.innerHTML = "";
@@ -69,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
 // Function to attach event listeners to table rows
 let clickedRowLat, clickedRowLng;
 
@@ -87,10 +86,9 @@ async function attachRowListeners() {
     row.addEventListener('click', function () {
       clickedRowLat = parseFloat($(this).data('lat'));
       clickedRowLng = parseFloat($(this).data('lng'));
-      console.log(`Row clicked: ${clickedRowLat}, ${clickedRowLng}`);
+
     });
   });
-
 
   // Function to wait for clickedRowLat and clickedRowLng to be updated
   function waitForCoordinates() {
@@ -112,12 +110,19 @@ async function attachRowListeners() {
       if (mapIframe.contentWindow) {
         // Send a message to markers.js
         mapIframe.contentWindow.postMessage({ action: 'unhideMarkers' }, '*');
-        console.log('Row collapsed');
+        // console.log('Row collapsed');
       }
     },
-    'expand.ft.row': async function () {
+    'expand.ft.row': async function (e, ft, row) {
       if (mapIframe.contentWindow) {
-        console.log('Row expanded');
+        // console.log('Row expanded');
+
+        // Collapse any other expanded rows
+        $('#tsvTable tbody tr[data-expanded="true"]').each(function () {
+          if (this !== row) {
+            $(this).find('.footable-toggle').click(); // Collapse the row
+          }
+        });
 
         // Reset coordinates to ensure fresh values are used
         clickedRowLat = undefined;
@@ -133,7 +138,7 @@ async function attachRowListeners() {
           console.error('Latitude or longitude is missing');
           return;
         }
-        console.log(`Updated lat: ${lat}, lng: ${lng}`);
+        // console.log(`Updated lat: ${lat}, lng: ${lng}`);
         if (mapIframe.contentWindow) {
           mapIframe.contentWindow.postMessage({ action: 'focusMarker', lat: lat, lng: lng }, '*');
         }
@@ -142,4 +147,37 @@ async function attachRowListeners() {
 
   });
 }
+
+/** Functions to focus on a row when a marker is selected */
+function focusRow(lat, lng) {
+  const row = document.querySelector(`#tsvTable tbody tr[data-lat="${lat}"][data-lng="${lng}"]`);
+  if (row) {
+
+    row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    row.classList.add('highlight'); // Add a class to highlight the row
+    $(row).find('.footable-toggle').click(); // Expand the row
+    setTimeout(() => row.classList.remove('highlight'), 2000); // Remove the highlight after 2 seconds
+  } else {
+    console.error('Row not found for the given coordinates');
+  }
+}
+
+// Listen for messages from the iframe
+window.addEventListener('message', function (event) {
+  if (event.data.action === 'focusRow') {
+    // console.log('Received message to focus on row:', event.data);
+    const { lat, lng } = event.data;
+    focusRow(lat, lng);
+  }
+});
+
+// Add CSS for the highlight class
+const style = document.createElement('style');
+style.innerHTML = `
+  .highlight {
+    background-color: #fdb913;
+  }
+`;
+document.head.appendChild(style);
+
 
