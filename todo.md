@@ -1,14 +1,19 @@
+WEB PAGE
+[ ] Implement drag to resize map / table pages
+
 MAP
 [] Geo-referenced visual?
 [] Toggle between illustrated map and satellite view layer
 [] Rotate map?
 [X] Show Markers
 [X] Fix Zoom in
+[ ] Markers with tooltips on side?
+[ ] Refine bounds
 
 TABLE
-[] Mobile-friendly table
-[] Filter by department
-[] Search
+[X] Mobile-friendly table
+[X] Filter by department
+[X] Search
 [] "Show on map" functionality for individual posters
 
 CSV
@@ -16,3 +21,4 @@ CSV
 
 HOSTING
 [X] Upload to GitHub Pages
+

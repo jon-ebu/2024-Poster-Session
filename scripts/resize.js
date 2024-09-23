@@ -1,5 +1,5 @@
 const divider = document.getElementById('divider');
-const mapContainer = document.document.querySelector('.map-container');
+const mapContainer = document.querySelector('.map-container');
 const tableContainer = document.querySelector('.table-container');
 
 let isDragging = false;

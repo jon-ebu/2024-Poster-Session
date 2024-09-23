@@ -1,9 +1,9 @@
 // Initialize map with HMC coordinates
 var map = L.map('map', {
     center: [34.1061046, -117.7119814],
-    zoom: 21, // Default zoom level
+    zoom: 20, // Default zoom level
     maxZoom: 22, 
-    minZoom: 20, 
+    minZoom: 18, 
     zoomDelta: 0.5,
     zoomSnap: 0.5 
 })
@@ -16,11 +16,12 @@ var bounds = [
 
 map.setMaxBounds(bounds);
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    zoom: 21,
+// Tile layer using OpenStreetMap (default Leaflet map)
+L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+    minZoom: 0,
     maxZoom: 22,
-    minZoom: 21,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    subdomains:['mt0','mt1','mt2','mt3'],
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
 export { map };
