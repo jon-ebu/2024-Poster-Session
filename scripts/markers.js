@@ -99,7 +99,7 @@ function adjustMarkerSize() {
 function toggleTooltips() {
     const zoomLevel = map.getZoom();
     markers.forEach(({ marker }) => {
-        if (zoomLevel === 19) {
+        if (zoomLevel <= 19) {
             marker.closeTooltip();
         } else {
             marker.openTooltip();
