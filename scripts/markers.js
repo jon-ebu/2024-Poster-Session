@@ -206,6 +206,7 @@ function restoreHiddenMarkers() {
 window.addEventListener('message', function (event) {
   if (event.data.action === 'unhideMarkers') {
     restoreHiddenMarkers();
+    toggleTooltips(); // Ensure tooltips are correctly toggled again
   } else if (event.data.action === 'focusMarker' && event.data.lat && event.data.lng) {
     focusOnMarker(event.data.lat, event.data.lng);
   }
