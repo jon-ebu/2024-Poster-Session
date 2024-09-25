@@ -195,6 +195,8 @@ function restoreHiddenMarkers() {
   hiddenMarkers.forEach(marker => marker.addTo(map));
   hiddenMarkers = []; // Clear the hiddenMarkers array after restoring
   toggleTooltips(); // Ensure tooltips are correctly toggled again
+  // Simulate a click on the screen
+  document.body.click();
   if (openPopUp) {
     map.closePopup(openPopUp);
     openPopUp = null;
