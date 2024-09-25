@@ -119,7 +119,7 @@ map.on("baselayerchange", function (e) {
 
 L.control.layers(baseLayers).addTo(map);
 
-/* Based on this http://jsfiddle.net/brettwp/J4djY/*/
+/* Based on this http://jsfiddle.net/brettwp/J4djY/
 function detectDoubleTapClosure() {
   let lastTap = 0;
   let timeout;
@@ -142,9 +142,11 @@ function detectDoubleTapClosure() {
   };
 }
 
-/* Regex test to determine if user is on mobile */
+
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     document.body.addEventListener('touchend', detectDoubleTapClosure(), { passive: false });
 }
+
+*/
 
 export { map };
