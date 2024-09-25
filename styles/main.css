@@ -36,3 +36,54 @@ iframe {
     background: #ccc;
     cursor: row-resize;
 }
+
+/* Keyframes for the clicking animation */
+@keyframes clickAnimation {
+    0% { background-color: #fdb913; }
+    50% { background-color: #ffd66e; } /* Click color */
+    100% { background-color: #fdb913; }
+  }
+  
+  /* Clicking animation class */
+  .click-animation {
+    animation: clickAnimation 0.2s ease-in-out;
+  }
+
+/* Style for the map container */
+.map-container {
+    position: relative;
+  }
+  
+  /* Style for the overlay */
+  .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-family: Arial, Helvetica, sans-serif;
+    z-index: 1000; /* Ensure it is on top of other elements */
+    opacity: 1; /* Fully visible */
+    transition: opacity 1s ease-in-out; /* Transition for fading out */
+  }
+  
+  /* Hide the overlay by default */
+  .overlay.hidden {
+    opacity: 0; /* Fully transparent */
+  }
+
+  .table-container {
+  height: 400px; /* Adjust the height as needed */
+  overflow: auto;
+}
+
+#tsvTable thead th {
+  position: sticky;
+  top: 0;
+  background-color: white; /* Ensure the header has a background color */
+  z-index: 1; /* Ensure the header is above the table rows */
+}

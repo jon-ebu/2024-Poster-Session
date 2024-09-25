@@ -4,12 +4,29 @@ html, body {
     margin: 0;
 }
 
+.leaflet-bar a.leaflet-disabled {
+    cursor: default;
+    background-color: #f4f4f4 !important;
+    color: #bbb;
+}
+
+
+
 #map {
     height: 100vh;
     width: 100%;
     background-color: #fafafa !important;
 
 
+}
+
+#map > div.leaflet-control-container > div.leaflet-top.leaflet-left > div > a.leaflet-control-zoom-in {
+    background-color: #fdb913;
+}
+
+
+#map > div.leaflet-control-container > div.leaflet-top.leaflet-left > div > a.leaflet-control-zoom-out {
+    background-color: #fdb913;
 }
 
 .mouseposition {

@@ -21,7 +21,7 @@ function initializeFooTable() {
          * e: The jQuery.Event object for the event.
          * ft: The instance of the plugin raising the event.
          */
-        // Sort the table by the "easel board" column on load
+        // Sort the table by the "easel" column on load
         const easelBoardColumnIndex = 6; 
         ft.sort(easelBoardColumnIndex, 'asc');
       }
