@@ -149,15 +149,13 @@ function toggleTooltips() {
  * Adjusts the font size of the tooltips based on the zoom level
  */
 function adjustTooltipSize() {
-  /* removing for now, causes bugs on mobile
   const zoomLevel = map.getZoom();
   const newFontSize =
     zoomLevel <= 20 ? "10px" : zoomLevel <= 21 ? "12px" : "14px"; // Adjust font sizes based on zoom level
   const tooltips = document.querySelectorAll(".leaflet-tooltip");
   tooltips.forEach((tooltip) => {
     tooltip.style.fontSize = newFontSize;
-  })
-*/ 
+  });
 }
 
 // Event listener for zoomend to adjust marker size and toggle tooltips
@@ -196,6 +194,7 @@ function restoreHiddenMarkers() {
   // console.log(hiddenMarkers)
   hiddenMarkers.forEach(marker => marker.addTo(map));
   hiddenMarkers = []; // Clear the hiddenMarkers array after restoring
+  toggleTooltips(); // Ensure tooltips are correctly toggled again
   if (openPopUp) {
     map.closePopup(openPopUp);
     openPopUp = null;
