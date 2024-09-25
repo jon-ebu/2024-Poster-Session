@@ -12,6 +12,9 @@
     <div class="container">
         <div id="header" onclick="refreshPage()"><p>HMC POSTER SESSION 2024</p></div>
         <div class="map-container">
+            <div id="pinchOverlay" class="overlay">
+                <p>Zoom in!</p>
+              </div>
             <iframe id="mapIframe" src="map.html"></iframe>
         </div>
         <div class="table-container">
@@ -22,6 +25,59 @@
     function refreshPage() {
         location.reload();
       }
+    </script>
+<script>
+    function refreshPage() {
+      const header = document.getElementById('header');
+      
+      // Add the click-animation class to trigger the animation
+      header.classList.add('click-animation');
+      
+      // Remove the click-animation class after the animation ends
+      setTimeout(() => {
+        header.classList.remove('click-animation');
+        // Refresh the page
+        location.reload();
+      }, 200); // Match the duration of the animation
+    }
+    </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const overlay = document.getElementById('pinchOverlay');
+      const mapIframe = document.getElementById('mapIframe');
+    
+      // Show the overlay
+      overlay.classList.remove('hidden');
+    
+      // Hide the overlay after 3 seconds
+      const hideOverlayTimeout = setTimeout(() => {
+        overlay.classList.add('hidden');
+      }, 1000); // Adjust the duration as needed
+    
+      // Function to hide the overlay
+      function hideOverlay() {
+        overlay.classList.add('hidden');
+        clearTimeout(hideOverlayTimeout); // Clear the timeout to prevent it from hiding again
+      }
+    
+      // Function to add event listeners to the iframe's document
+      function addIframeEventListeners() {
+        try {
+          const iframeDocument = mapIframe.contentDocument || mapIframe.contentWindow.document;
+          iframeDocument.addEventListener('wheel', hideOverlay);
+          iframeDocument.addEventListener('touchstart', hideOverlay);
+          iframeDocument.addEventListener('touchmove', hideOverlay);
+        } catch (e) {
+          // Retry if the iframe's document is not accessible yet
+          setTimeout(addIframeEventListeners, 100);
+        }
+      }
+    
+      // Listen for the iframe load event
+      mapIframe.addEventListener('load', function() {
+        addIframeEventListeners();
+      });
+    });
     </script>
 </body>
 

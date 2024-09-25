@@ -27,3 +27,6 @@ CSV
 HOSTING
 [X] Upload to GitHub Pages
 
+[ ] Double-tap to zoom out and re-center to default
+[X ] Differentiate things into colors
+[X] Animation when clicking top bar

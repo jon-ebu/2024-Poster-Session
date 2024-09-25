@@ -88,7 +88,7 @@ function loadMarkersFromTSV(tsvPath) {
           if (row.Latitude && row.Longitude) {
             var lat = parseFloat(row.Latitude);
             var lng = parseFloat(row.Longitude);
-            var easelBoardId = row["Easel Board"];
+            var easelBoardId = row["Easel"];
             var tooltipDirection = row["Tooltip Direction"];
             var title = row["Poster Title"];
             var students = row["Students"];

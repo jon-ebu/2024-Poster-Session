@@ -8,58 +8,58 @@ function getColorByEaselBoardId(value) {
   let color;
   switch (easelBoardId) {
     case "B":
-      color = "#E69F00"; // orange
+      color = "#E69F00"; // yellow-orange
       break;
     case "BC":
-      color = "#56B4E9"; // sky blue
+      color = "#56B4E9"; // light blue
       break;
     case "BCS":
-      color = "#009E73"; // bluish green
+      color = "#009E73"; // teal
       break;
     case "BE":
-      color = "#CC79A7"; // yellow
+      color = "#F0E442"; // light yellow
       break;
     case "C":
-      color = "#0072B2"; // blue
+      color = "#0072B2"; // dark blue
       break;
     case "CEP":
-      color = "#D55E00"; // vermillion
+      color = "#D55E00"; // orange
       break;
     case "CHC":
-      color = "#CC79A7"; // reddish purple
+      color = "#CC79A7"; // pink
       break;
     case "CS":
-      color = "#F0E442"; // gray
+      color = "#FF69B4"; // hot pink
       break;
     case "CSHC":
-      color = "#E69F00"; // orange
+      color = "#E69F00"; // yellow-orange
       break;
     case "CSM":
-      color = "#56B4E9"; // sky blue
+      color = "#56B4E9"; // light blue
       break;
     case "CSN":
-      color = "#009E73"; // bluish green
+      color = "#009E73"; // teal
       break;
     case "E":
-      color = "#0072B2"; // blue
+      color = "#0072B2"; // dark blue
       break;
     case "EM":
-      color = "#CC79A7"; // yellow
+      color = "#FF4500"; // orange-red
       break;
     case "M":
-      color = "#D55E00"; // vermillion
+      color = "#D55E00"; // orange
       break;
     case "O":
-      color = "#CC79A7"; // reddish purple
+      color = "#CC79A7"; // pink
       break;
     case "P":
-      color = "#CC79A7"; // gray
+      color = "#FFD700"; // gold
       break;
     case "SSEF":
-      color = "#E69F00"; // orange
+      color = "#E69F00"; // yellow-orange
       break;
     default:
-      color = "#000000"; // black for unrecognized easelBoardIdes
+      color = "#000000"; // black for unrecognized easelBoardId
   }
 
   return color;
