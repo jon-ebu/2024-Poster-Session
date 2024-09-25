@@ -153,11 +153,10 @@ function focusRow(lat, lng) {
   );
   if (row) {
     row.classList.add("highlight"); // Add a class to highlight the row
-        setTimeout(() => {
-      $(row).find(".footable-toggle").click(); // Expand the row after 1 second
-    }, 1000);
+    $(row).find(".footable-toggle").click(); // Expand the row
     setTimeout(() => row.classList.remove("highlight"), 2000); // Remove the highlight after 2 seconds
     row.scrollIntoView({ behavior: "smooth", block: "center" });
+
   } else {
     console.error("Row not found for the given coordinates");
   }
