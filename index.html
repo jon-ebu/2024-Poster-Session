@@ -208,6 +208,13 @@
             z-index: 1000 !important;
         }
         
+        /* Smooth fade-in when restoring markers */
+        .marker-fade-in {
+            opacity: 1;
+            transform: scale(1);
+            transition: all 0.8s ease-out;
+        }
+        
         /* Enhanced popup styling */
         .leaflet-popup-content-wrapper {
             background-color: rgba(255, 255, 255, 0.95);

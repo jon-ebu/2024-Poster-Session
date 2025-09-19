@@ -394,8 +394,12 @@ function fadeOtherMarkers(hoveredMarker) {
         const markerElement = marker.getElement();
         if (markerElement && marker !== hoveredMarker) {
             markerElement.classList.add('marker-faded');
+            // Also hide the tooltip (easel number) for faded markers
+            marker.closeTooltip();
         } else if (markerElement && marker === hoveredMarker) {
             markerElement.classList.add('marker-focused');
+            // Hide the tooltip for focused marker too since easel number is in popup
+            marker.closeTooltip();
         }
     });
 }
@@ -405,10 +409,22 @@ function restoreMarkerOpacity() {
     markerObjs.forEach(marker => {
         const markerElement = marker.getElement();
         if (markerElement) {
+            // Add fade-in class for smooth transition
+            markerElement.classList.add('marker-fade-in');
             markerElement.classList.remove('marker-faded');
             markerElement.classList.remove('marker-focused');
+            
+            // Remove fade-in class after animation completes
+            setTimeout(() => {
+                markerElement.classList.remove('marker-fade-in');
+            }, 800);
         }
     });
+    
+    // Restore tooltips based on current zoom level with a longer delay for smoother effect
+    setTimeout(() => {
+        toggleTooltips();
+    }, 300);
 }
 
 // Initialize table
