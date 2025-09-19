@@ -56,15 +56,70 @@ function addMarker(
     });
     marker.addTo(map);
     /** Event listener to help focus on a row when selecting a marker */
-    const tableIframe = window.parent.document.getElementById('tableIframe');
-    if (!tableIframe) {
-      console.error('Table iframe is not available');
-      return;
+    function getTableIframe() {
+      // Try different ways to get the table iframe depending on fullscreen state
+      let tableIframe = null;
+      
+      // First, try the normal parent document approach
+      if (window.parent && window.parent.document) {
+        tableIframe = window.parent.document.getElementById('tableIframe');
+      }
+      
+      // If not found and we might be in fullscreen, try top-level document
+      if (!tableIframe && window.top && window.top.document) {
+        tableIframe = window.top.document.getElementById('tableIframe');
+      }
+      
+      // If still not found, try looking in all frames
+      if (!tableIframe) {
+        try {
+          const frames = window.parent.frames;
+          for (let i = 0; i < frames.length; i++) {
+            if (frames[i].name === 'tableIframe' || 
+                frames[i].document.querySelector('#tsvTable')) {
+              return frames[i];
+            }
+          }
+        } catch (e) {
+          // Cross-origin or access issues
+        }
+      }
+      
+      return tableIframe;
     }
+    
     marker.addEventListener('click', function () {
       const lat = marker.getLatLng().lat;
       const lng = marker.getLatLng().lng;
-      tableIframe.contentWindow.postMessage({ action: 'focusRow', lat: lat, lng: lng }, '*');
+      console.log(`Marker clicked with coordinates: lat=${lat}, lng=${lng}`);
+      
+      const tableIframe = getTableIframe();
+      if (tableIframe && tableIframe.contentWindow) {
+        try {
+          tableIframe.contentWindow.postMessage({ action: 'focusRow', lat: lat, lng: lng }, '*');
+          console.log('Message sent to table iframe');
+        } catch (error) {
+          console.error('Error sending message to table iframe:', error);
+        }
+      } else {
+        console.log('Table iframe not available, trying fallback communication');
+        
+        // Fallback: try broadcasting to all windows
+        try {
+          if (window.top && window.top !== window) {
+            window.top.postMessage({ action: 'focusRow', lat: lat, lng: lng }, '*');
+            console.log('Fallback message sent to top window');
+          }
+          
+          // Also try parent window
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ action: 'focusRow', lat: lat, lng: lng }, '*');
+            console.log('Fallback message sent to parent window');
+          }
+        } catch (error) {
+          console.error('Error in fallback communication:', error);
+        }
+      }
     });
     markerObjs.push(marker);
     markers.push({ marker, easelBoardId });
@@ -205,14 +260,22 @@ function restoreHiddenMarkers() {
 
 // Restore hidden markers when a row is collapsed, otherwise
 // focusOnMarker
-window.addEventListener('message', function (event) {
+function handleMessage(event) {
   if (event.data.action === 'unhideMarkers') {
     restoreHiddenMarkers();
     toggleTooltips(); // Ensure tooltips are correctly toggled again
   } else if (event.data.action === 'focusMarker' && event.data.lat && event.data.lng) {
     focusOnMarker(event.data.lat, event.data.lng);
   }
-});
+}
+
+// Listen for messages from both the immediate window and top window
+window.addEventListener('message', handleMessage);
+
+// Also listen for messages from the top window (for fullscreen mode)
+if (window.top !== window) {
+  window.top.addEventListener('message', handleMessage);
+}
 
 // Restore hidden markers after clicking anywhere on the map
 window.addEventListener("click", () => {
