@@ -237,6 +237,10 @@ function addMarker(lat, lng, popupText, easelBoardId, tooltipText, tooltipDirect
             this.closePopup();
         });
 
+        // Store tooltip direction for later restoration
+        marker._tooltipDirection = tooltipDirection;
+        marker._tooltipText = tooltipText;
+        
         marker.bindTooltip(tooltipText, {
             permanent: true,
             direction: tooltipDirection,
@@ -297,7 +301,7 @@ function toggleTooltips() {
 
 function adjustTooltipSize() {
     const zoomLevel = map.getZoom();
-    const newFontSize = zoomLevel <= 20 ? "10px" : zoomLevel <= 21 ? "12px" : "14px";
+    const newFontSize = zoomLevel <= 20 ? "12px" : zoomLevel <= 21 ? "13px" : "14px";
     const tooltips = document.querySelectorAll(".leaflet-tooltip");
     tooltips.forEach((tooltip) => {
         tooltip.style.fontSize = newFontSize;
@@ -325,7 +329,13 @@ function focusOnMarker(lat, lng) {
 function restoreHiddenMarkers() {
     hiddenMarkers.forEach(marker => marker.addTo(map));
     hiddenMarkers = [];
-    toggleTooltips();
+    
+    // Only restore tooltips if we're not currently in a hover state
+    const isHovering = document.body.classList.contains('marker-hover-active');
+    if (!isHovering) {
+        toggleTooltips();
+    }
+    
     if (openPopUp) {
         map.closePopup(openPopUp);
         openPopUp = null;
@@ -390,42 +400,66 @@ function removeMarkerHighlights() {
 
 // Fade out all markers except the hovered one
 function fadeOtherMarkers(hoveredMarker) {
+    console.log('fadeOtherMarkers called, total markers:', markerObjs.length);
+    
+    // Add a class to body to indicate hover state
+    document.body.classList.add('marker-hover-active');
+    
+    let fadedCount = 0;
+    let focusedCount = 0;
+    
     markerObjs.forEach(marker => {
         const markerElement = marker.getElement();
         if (markerElement && marker !== hoveredMarker) {
             markerElement.classList.add('marker-faded');
-            // Also hide the tooltip (easel number) for faded markers
+            fadedCount++;
+            // Force close tooltip and hide it
             marker.closeTooltip();
         } else if (markerElement && marker === hoveredMarker) {
             markerElement.classList.add('marker-focused');
-            // Hide the tooltip for focused marker too since easel number is in popup
+            focusedCount++;
+            // Force close tooltip for focused marker too
             marker.closeTooltip();
         }
     });
+    
+    console.log(`Applied marker-faded to ${fadedCount} markers, marker-focused to ${focusedCount} markers`);
 }
 
 // Restore opacity to all markers
 function restoreMarkerOpacity() {
+    // Remove hover state indicator
+    document.body.classList.remove('marker-hover-active');
+    
     markerObjs.forEach(marker => {
         const markerElement = marker.getElement();
         if (markerElement) {
-            // Add fade-in class for smooth transition
-            markerElement.classList.add('marker-fade-in');
-            markerElement.classList.remove('marker-faded');
-            markerElement.classList.remove('marker-focused');
+            // Force a reflow to ensure the faded state is rendered
+            markerElement.offsetHeight;
             
-            // Remove fade-in class after animation completes
-            setTimeout(() => {
-                markerElement.classList.remove('marker-fade-in');
-            }, 800);
+            // Add fade-in class while keeping faded class momentarily
+            markerElement.classList.add('marker-fade-in');
+            
+            // Remove faded/focused classes after a tiny delay to trigger transition
+            requestAnimationFrame(() => {
+                markerElement.classList.remove('marker-faded');
+                markerElement.classList.remove('marker-focused');
+                
+                // Clean up fade-in class after animation
+                setTimeout(() => {
+                    markerElement.classList.remove('marker-fade-in');
+                }, 1200);
+            });
         }
     });
     
-    // Restore tooltips based on current zoom level with a longer delay for smoother effect
+    // Restore tooltips based on current zoom level with a longer delay
     setTimeout(() => {
         toggleTooltips();
-    }, 300);
+        adjustTooltipSize(); // Ensure correct font size is applied
+    }, 600);
 }
+
 
 // Initialize table
 function initializeTable() {
