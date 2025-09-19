@@ -1,84 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HMC Poster Session 2024</title>
-    <link rel="stylesheet" href="styles/main.css">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+    <!-- FooTable CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/3.1.6/footable.bootstrap.min.css" crossorigin="anonymous">
+    
+    <style>
+        /* Combined styles for unified app */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+        }
+        
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #fdb913 0%, #e6a311 100%);
+            color: #333;
+            text-align: center;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .header:hover {
+            background: linear-gradient(135deg, #e6a311 0%, #d49210 100%);
+        }
+        
+        .content-container {
+            display: flex;
+            flex: 1;
+            min-height: 0;
+        }
+        
+        .map-section {
+            flex: 1;
+            position: relative;
+            min-width: 50%;
+        }
+        
+        .table-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 50%;
+            border-left: 2px solid #ddd;
+        }
+        
+        #map {
+            width: 100%;
+            height: 100%;
+            background-color: #fafafa;
+        }
+        
+        .table-container {
+            flex: 1;
+            overflow: auto;
+            padding: 10px;
+        }
+        
+        .search-container {
+            padding: 10px;
+            background: white;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* Fullscreen styles */
+        .fullscreen-active {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 9999 !important;
+            background: white;
+        }
+        
+        .fullscreen-active .content-container {
+            height: 100vh;
+        }
+        
+        .fullscreen-active .table-section {
+            display: none; /* Hide table in fullscreen */
+        }
+        
+        .fullscreen-active .map-section {
+            flex: none;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        .fullscreen-active .header {
+            display: none; /* Hide header in fullscreen */
+        }
+        
+        /* Leaflet control styles */
+        .leaflet-control-fullscreen-button {
+            background-color: #fdb913 !important;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #333;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .leaflet-control-fullscreen-button:hover {
+            background-color: #e6a311 !important;
+        }
+        
+        .fullscreen-icon {
+            font-size: 16px;
+            line-height: 1;
+        }
+        
+        /* Table styles */
+        .table-responsive {
+            overflow-x: auto;
+        }
+        
+        .poster-title {
+            white-space: normal !important;
+            overflow-wrap: normal !important;
+            word-break: normal !important;
+            max-width: 200px;
+        }
+        
+        .easel-cell {
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+        
+        .easel-cell svg {
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+        
+        .highlight {
+            background-color: #fdb913 !important;
+            animation: highlightPulse 0.5s ease-in-out;
+        }
+        
+        @keyframes highlightPulse {
+            0% { background-color: #fff; }
+            50% { background-color: #fdb913; }
+            100% { background-color: #fdb913; }
+        }
+        
+        /* Zoom overlay */
+        .overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+        }
+        
+        .overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .content-container {
+                flex-direction: column;
+            }
+            
+            .map-section, .table-section {
+                min-width: 100%;
+                min-height: 50vh;
+            }
+            
+            .table-section {
+                border-left: none;
+                border-top: 2px solid #ddd;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <div class="container">
-        <div id="header" onclick="refreshPage()"><p>HMC POSTER SESSION 2024</p></div>
-        <div class="map-container">
-            <div id="pinchOverlay" class="overlay">
-                <p>Zoom in!</p>
-              </div>
-            <iframe id="mapIframe" src="map.html"></iframe>
+    <div class="app-container">
+        <div class="header" onclick="refreshPage()">
+            HMC POSTER SESSION 2024
         </div>
-        <div class="table-container">
-            <iframe id="tableIframe" src="table.html"></iframe>
+        
+        <div class="content-container">
+            <div class="map-section">
+                <div id="pinchOverlay" class="overlay">
+                    <p>Zoom in!</p>
+                </div>
+                <div id="map"></div>
+            </div>
+            
+            <div class="table-section">
+                <div class="search-container">
+                    <div id="filter-form-container"></div>
+                </div>
+                
+                <div class="table-container">
+                    <div class="table-responsive">
+                        <table id="tsvTable" class="footable table table-striped" 
+                               data-filter-container="#filter-form-container"
+                               data-paging="false" 
+                               data-filtering="true"
+                               data-sorting="true" 
+                               data-state="true" 
+                               data-filter-focus="true">
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    
+    <!-- Scripts -->
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- CSV Parser -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- FooTable JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/3.1.6/footable.min.js"></script>
+    
+    <script type="module" src="scripts/unified-app.js"></script>
+    
     <script>
-    function refreshPage() {
-        location.reload();
-      }
-    </script>
-<script>
-    function refreshPage() {
-      const header = document.getElementById('header');
-      
-      // Add the click-animation class to trigger the animation
-      header.classList.add('click-animation');
-      
-      // Remove the click-animation class after the animation ends
-      setTimeout(() => {
-        header.classList.remove('click-animation');
-        // Refresh the page
-        location.reload();
-      }, 200); // Match the duration of the animation
-    }
-    </script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const overlay = document.getElementById('pinchOverlay');
-      const mapIframe = document.getElementById('mapIframe');
-    
-      // Show the overlay
-      overlay.classList.remove('hidden');
-    
-      // Hide the overlay after 3 seconds
-      const hideOverlayTimeout = setTimeout(() => {
-        overlay.classList.add('hidden');
-      }, 1000); // Adjust the duration as needed
-    
-      // Function to hide the overlay
-      function hideOverlay() {
-        overlay.classList.add('hidden');
-        clearTimeout(hideOverlayTimeout); // Clear the timeout to prevent it from hiding again
-      }
-    
-      // Function to add event listeners to the iframe's document
-      function addIframeEventListeners() {
-        try {
-          const iframeDocument = mapIframe.contentDocument || mapIframe.contentWindow.document;
-          iframeDocument.addEventListener('wheel', hideOverlay);
-          iframeDocument.addEventListener('touchstart', hideOverlay);
-          iframeDocument.addEventListener('touchmove', hideOverlay);
-        } catch (e) {
-          // Retry if the iframe's document is not accessible yet
-          setTimeout(addIframeEventListeners, 100);
+        function refreshPage() {
+            const header = document.querySelector('.header');
+            header.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                header.style.transform = 'scale(1)';
+                location.reload();
+            }, 200);
         }
-      }
-    
-      // Listen for the iframe load event
-      mapIframe.addEventListener('load', function() {
-        addIframeEventListeners();
-      });
-    });
+        
+        // Zoom overlay functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const overlay = document.getElementById('pinchOverlay');
+            const mapSection = document.querySelector('.map-section');
+            
+            overlay.classList.remove('hidden');
+            
+            const hideOverlayTimeout = setTimeout(() => {
+                overlay.classList.add('hidden');
+            }, 1000);
+            
+            function hideOverlay() {
+                overlay.classList.add('hidden');
+                clearTimeout(hideOverlayTimeout);
+            }
+            
+            mapSection.addEventListener('wheel', hideOverlay);
+            mapSection.addEventListener('touchstart', hideOverlay);
+            mapSection.addEventListener('touchmove', hideOverlay);
+        });
     </script>
 </body>
-
 </html>
