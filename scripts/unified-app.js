@@ -215,11 +215,25 @@ function addMarker(lat, lng, popupText, easelBoardId, tooltipText, tooltipDirect
             riseOnHover: true,
         });
 
-        marker.bindPopup(popupText);
+        // Create enhanced popup content with just easel and title
+        const enhancedPopupText = `
+            <div class="marker-popup">
+                <div class="easel-number">${easelBoardId}</div>
+                <div class="poster-title-popup">${popupText}</div>
+            </div>
+        `;
+        
+        marker.bindPopup(enhancedPopupText);
+        
         marker.on("mouseover", function (e) {
+            console.log(`Hovering over marker: ${easelBoardId}`);
+            fadeOtherMarkers(this);
             this.openPopup();
         });
+        
         marker.on("mouseout", function (e) {
+            console.log(`Mouse left marker: ${easelBoardId}`);
+            restoreMarkerOpacity();
             this.closePopup();
         });
 
@@ -243,6 +257,11 @@ function addMarker(lat, lng, popupText, easelBoardId, tooltipText, tooltipDirect
             const lat = marker.getLatLng().lat;
             const lng = marker.getLatLng().lng;
             console.log(`Marker clicked: lat=${lat}, lng=${lng}`);
+            
+            // Clear any existing highlights first
+            removeMarkerHighlights();
+            
+            // Focus on the corresponding row
             focusRow(lat, lng); // Direct function call!
         });
 
@@ -311,6 +330,85 @@ function restoreHiddenMarkers() {
         map.closePopup(openPopUp);
         openPopUp = null;
     }
+}
+
+// Highlight a specific marker when row is clicked (without hiding others)
+function highlightMarker(lat, lng) {
+    console.log(`Highlighting marker: lat=${lat}, lng=${lng}`);
+    
+    // First remove any existing highlights
+    removeMarkerHighlights();
+    
+    // Find the matching marker
+    let targetMarker = null;
+    markerObjs.forEach(marker => {
+        const markerLat = parseFloat(marker.getLatLng().lat.toFixed(7));
+        const markerLng = parseFloat(marker.getLatLng().lng.toFixed(7));
+        const searchLat = parseFloat(lat.toFixed(7));
+        const searchLng = parseFloat(lng.toFixed(7));
+        
+        if (markerLat === searchLat && markerLng === searchLng) {
+            targetMarker = marker;
+        }
+    });
+    
+    if (targetMarker) {
+        console.log('Marker found, highlighting');
+        
+        // Add highlight class to marker
+        const markerElement = targetMarker.getElement();
+        if (markerElement) {
+            markerElement.classList.add('marker-highlight');
+        }
+        
+        // Pan to marker and show popup briefly
+        map.panTo([lat, lng], {animate: true, duration: 1.0});
+        targetMarker.openPopup();
+        
+        // Auto-close popup after 2 seconds
+        setTimeout(() => {
+            targetMarker.closePopup();
+        }, 2000);
+        
+        // Remove highlight after 4 seconds
+        setTimeout(() => {
+            if (markerElement) {
+                markerElement.classList.remove('marker-highlight');
+            }
+        }, 4000);
+    } else {
+        console.error(`Marker not found for coordinates lat: ${lat}, lng: ${lng}`);
+    }
+}
+
+// Remove all marker highlights
+function removeMarkerHighlights() {
+    document.querySelectorAll('.marker-highlight').forEach(element => {
+        element.classList.remove('marker-highlight');
+    });
+}
+
+// Fade out all markers except the hovered one
+function fadeOtherMarkers(hoveredMarker) {
+    markerObjs.forEach(marker => {
+        const markerElement = marker.getElement();
+        if (markerElement && marker !== hoveredMarker) {
+            markerElement.classList.add('marker-faded');
+        } else if (markerElement && marker === hoveredMarker) {
+            markerElement.classList.add('marker-focused');
+        }
+    });
+}
+
+// Restore opacity to all markers
+function restoreMarkerOpacity() {
+    markerObjs.forEach(marker => {
+        const markerElement = marker.getElement();
+        if (markerElement) {
+            markerElement.classList.remove('marker-faded');
+            markerElement.classList.remove('marker-focused');
+        }
+    });
 }
 
 // Initialize table
@@ -402,10 +500,27 @@ function displayTable(tableData) {
         }
     });
 
+    // Add click listeners to table rows for marker highlighting
+    $("#tsvTable tbody").on("click", "tr", function(e) {
+        // Don't trigger if clicking on the toggle button itself
+        if ($(e.target).closest('.footable-toggle').length) {
+            return;
+        }
+        
+        const lat = parseFloat($(this).data("lat"));
+        const lng = parseFloat($(this).data("lng"));
+        
+        if (lat && lng) {
+            console.log(`Row clicked, highlighting marker: lat=${lat}, lng=${lng}`);
+            highlightMarker(lat, lng);
+        }
+    });
+
     // Bind table events
     $("#tsvTable").bind({
         "collapse.ft.row": function () {
             restoreHiddenMarkers();
+            removeMarkerHighlights(); // Also remove any highlights when collapsing
         },
         "expand.ft.row": function (e, ft, row) {
             // Collapse other rows
@@ -415,13 +530,13 @@ function displayTable(tableData) {
                 }
             });
 
-            // Get coordinates and focus marker
+            // Get coordinates and just highlight the marker (don't hide others)
             const lat = parseFloat($(row).data("lat"));
             const lng = parseFloat($(row).data("lng"));
             
             if (lat && lng) {
-                console.log(`Row expanded, focusing marker: lat=${lat}, lng=${lng}`);
-                focusOnMarker(lat, lng); // Direct function call!
+                console.log(`Row expanded, highlighting marker: lat=${lat}, lng=${lng}`);
+                highlightMarker(lat, lng); // Use highlight instead of focus
             }
         },
     });
@@ -505,10 +620,8 @@ function loadData() {
                     var students = row["Students"];
                     var faculty = row["Faculty"];
                     var department = row["Poster Category"];
-                    var text = `<strong>${title}</strong><br><br><strong>`;
-                    
                     if (!isNaN(lat) && !isNaN(lng)) {
-                        addMarker(lat, lng, text, easelBoardId, easelBoardId, tooltipDirection);
+                        addMarker(lat, lng, title, easelBoardId, easelBoardId, tooltipDirection);
                     } else {
                         console.warn("Invalid coordinates:", row);
                     }
