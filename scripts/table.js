@@ -70,7 +70,7 @@ $("#paging-ui-container").on("click", function () {
 // Wait for the DOM to load and load the TSV file and add event listeners
 document.addEventListener("DOMContentLoaded", function () {
   // Fetch the TSV file using AJAX
-  fetch("data/2024-poster-session-data.tsv")
+  fetch("data/2025-poster-session-data.tsv")
     .then((response) => response.text())
     .then((text) => {
       const rows = text.split("\n");

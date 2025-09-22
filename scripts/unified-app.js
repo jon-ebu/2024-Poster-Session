@@ -642,7 +642,7 @@ function focusRow(lat, lng) {
 function loadData() {
     console.log('Loading data...');
     
-    Papa.parse("data/2024-poster-session-data.tsv", {
+    Papa.parse("data/2025-poster-session-data.tsv", {
         download: true,
         header: true,
         complete: function (results) {

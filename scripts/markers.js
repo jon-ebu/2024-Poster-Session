@@ -283,5 +283,5 @@ window.addEventListener("click", () => {
 });
 
 
-loadMarkersFromTSV("data/2024-poster-session-data.tsv");
+loadMarkersFromTSV("data/2025-poster-session-data.tsv");
 
