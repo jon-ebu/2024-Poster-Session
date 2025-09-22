@@ -20,12 +20,14 @@
             padding: 0;
             font-family: Arial, sans-serif;
             background-color: #fafafa;
+            overflow: hidden; /* Prevent page scrolling */
         }
         
         .app-container {
             display: flex;
             flex-direction: column;
             height: 100vh;
+            overflow: hidden; /* Ensure no overflow */
         }
         
         .header {
@@ -72,14 +74,33 @@
         
         .table-container {
             flex: 1;
-            overflow: auto;
+            height: calc(100vh - 120px); /* Take remaining viewport height minus header (~60px) and search (~60px) */
+            overflow: hidden;
             padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .table-responsive {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: auto;
+        }
+        
+        /* Sticky header */
+        #tsvTable thead th {
+            position: sticky;
+            top: 0;
+            background-color: #f8f9fa;
+            z-index: 10;
+            box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
         }
         
         .search-container {
             padding: 10px;
             background: white;
             border-bottom: 1px solid #ddd;
+            flex-shrink: 0; /* Don't shrink */
         }
         
         /* Fullscreen styles */
@@ -285,12 +306,16 @@
             
             .map-section, .table-section {
                 min-width: 100%;
-                min-height: 50vh;
+                height: 50vh; /* Each section takes exactly half the viewport */
             }
             
             .table-section {
                 border-left: none;
                 border-top: 2px solid #ddd;
+            }
+            
+            .table-container {
+                height: calc(50vh - 100px); /* Take half viewport minus header and search space */
             }
         }
     </style>
@@ -303,26 +328,24 @@
         
         <div class="content-container">
             <div class="map-section">
-                <div id="pinchOverlay" class="overlay">
-                    <p>Zoom in!</p>
-                </div>
+            <div id="pinchOverlay" class="overlay">
+                <p>Zoom in!</p>
+              </div>
                 <div id="map"></div>
             </div>
             
             <div class="table-section">
                 <div class="search-container">
-                    <div id="filter-form-container"></div>
+                    <input type="text" id="quickSearch" placeholder="Search posters..." style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
                 </div>
                 
-                <div class="table-container">
+        <div class="table-container">
                     <div class="table-responsive">
                         <table id="tsvTable" class="footable table table-striped" 
-                               data-filter-container="#filter-form-container"
                                data-paging="false" 
-                               data-filtering="true"
+                               data-filtering="false"
                                data-sorting="true" 
-                               data-state="true" 
-                               data-filter-focus="true">
+                               data-state="true">
                         </table>
                     </div>
                 </div>
@@ -345,35 +368,35 @@
     <script type="module" src="scripts/unified-app.js"></script>
     
     <script>
-        function refreshPage() {
+    function refreshPage() {
             const header = document.querySelector('.header');
             header.style.transform = 'scale(0.98)';
             setTimeout(() => {
                 header.style.transform = 'scale(1)';
-                location.reload();
+        location.reload();
             }, 200);
         }
         
         // Zoom overlay functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const overlay = document.getElementById('pinchOverlay');
+    document.addEventListener('DOMContentLoaded', function() {
+      const overlay = document.getElementById('pinchOverlay');
             const mapSection = document.querySelector('.map-section');
-            
-            overlay.classList.remove('hidden');
-            
-            const hideOverlayTimeout = setTimeout(() => {
-                overlay.classList.add('hidden');
+    
+      overlay.classList.remove('hidden');
+    
+      const hideOverlayTimeout = setTimeout(() => {
+        overlay.classList.add('hidden');
             }, 1000);
-            
-            function hideOverlay() {
-                overlay.classList.add('hidden');
+    
+      function hideOverlay() {
+        overlay.classList.add('hidden');
                 clearTimeout(hideOverlayTimeout);
             }
             
             mapSection.addEventListener('wheel', hideOverlay);
             mapSection.addEventListener('touchstart', hideOverlay);
             mapSection.addEventListener('touchmove', hideOverlay);
-        });
+    });
     </script>
 </body>
 </html>

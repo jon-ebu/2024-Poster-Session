@@ -520,17 +520,15 @@ function displayTable(tableData) {
     // Initialize FooTable
     $("#tsvTable").footable({
         sorting: { enabled: true },
-        filtering: { 
-            enabled: true,
-            focus: false,
-            container: "#filter-form-container",
-        },
+        filtering: { enabled: false },
         toggle: true,
         paging: { enabled: false, limit: 1000 },
         'on': {
             'postinit.ft.table': function (e, ft) {
                 const easelColumnIndex = 6; 
                 ft.sort(easelColumnIndex, 'asc');
+                // Initialize quick search after table is ready
+                initializeQuickSearch();
             }
         }
     });
@@ -636,6 +634,37 @@ function focusRow(lat, lng) {
     } else {
         console.error(`Row not found for coordinates lat: ${lat}, lng: ${lng}`);
     }
+}
+
+// Initialize quick search functionality
+function initializeQuickSearch() {
+    const searchInput = document.getElementById('quickSearch');
+    const table = document.getElementById('tsvTable');
+    
+    if (!searchInput || !table) return;
+    
+    searchInput.addEventListener('keyup', function() {
+        const searchTerm = this.value.toLowerCase().trim();
+        const rows = table.querySelectorAll('tbody tr');
+        
+        rows.forEach(row => {
+            if (searchTerm === '') {
+                row.style.display = '';
+                return;
+            }
+            
+            // Get all text content from the row (excluding toggle buttons)
+            const rowText = row.textContent.toLowerCase();
+            
+            if (rowText.includes(searchTerm)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+    
+    console.log('Quick search initialized');
 }
 
 // Load data and initialize everything
