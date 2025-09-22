@@ -14,7 +14,7 @@ function getColorByEaselBoardId(value) {
       color = "#FFA500"; // orange (BCS-1, BCS-2, BCS-3)
       break;
     case "BHC":
-      color = "#008000"; // green (Biology, Hixon Center - follows Biology color)
+      color = "#FFA500"; // orange (Biology, Hixon Center - follows Biology color)
       break;
     case "C":
       color = "#FF0000"; // red (C-1 through C-17)
