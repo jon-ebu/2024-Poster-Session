@@ -62,7 +62,7 @@ function getColorByEaselBoardId(value) {
       color = "#FFA500"; // orange (HSAM-1)
       break;
     case "M":
-      color = "#FFA500"; // orange (M-1 through M-5)
+      color = "#FF8C00"; // deep orange (M-1 through M-5)
       break;
     case "P":
       color = "#800080"; // purple (P-1 through P-13)
