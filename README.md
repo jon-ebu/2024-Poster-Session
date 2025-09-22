@@ -1,4 +1,4 @@
-# HMC 2024 Poster Session web map
+# HMC Poster Session web map
 An interactive web map and table for the HMC Poster Session.
 
 Built using [Leaflet](https://leafletjs.com/) and [FooTable](https://fooplugins.github.io/FooTable/).
