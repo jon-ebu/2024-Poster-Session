@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>HMC Poster Session 2025</title>
     
     <!-- Leaflet CSS -->
@@ -317,6 +317,41 @@
             .table-container {
                 height: calc(50vh - 100px); /* Take half viewport minus header and search space */
             }
+            
+            /* Fix text overflow in expanded rows on mobile */
+            #tsvTable tbody tr.footable-detail-show .footable-toggle-detail {
+                word-wrap: break-word;
+                word-break: break-word;
+                overflow-wrap: break-word;
+                white-space: normal;
+                max-width: 100%;
+            }
+            
+            #tsvTable .footable-toggle-detail td {
+                word-wrap: break-word;
+                word-break: break-word;
+                overflow-wrap: break-word;
+                white-space: normal;
+                padding: 10px !important;
+                font-size: 14px;
+                line-height: 1.4;
+            }
+            
+            /* Ensure table cells don't overflow */
+            #tsvTable td {
+                max-width: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            
+            /* But allow expanded detail content to wrap */
+            #tsvTable .footable-toggle-detail td {
+                max-width: none;
+                overflow: visible;
+                text-overflow: initial;
+                white-space: normal;
+            }
         }
     </style>
 </head>
@@ -336,7 +371,7 @@
             
             <div class="table-section">
                 <div class="search-container">
-                    <input type="text" id="quickSearch" placeholder="Search posters..." style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+                    <input type="text" id="quickSearch" placeholder="Search posters..." style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
                 </div>
                 
         <div class="table-container">
